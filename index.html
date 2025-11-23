@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="favicon.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COWAfrica | Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body id="top">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="./images/logo7.png" alt="COWAfrica Logo" class="logo">
+            <div class="tagline">
+                <h1>Center for One Welfare - Africa</h1>
+                <p>UNITING FOR A HEALTHIER WORLD</p>
+            </div>
+        </div>
+        <div class="top-actions">
+            <a href="support/support.html" class="top-link">Donate</a>
+            <a href="getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="main-navbar">
+        <nav>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+            <ul class="main-nav">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about/who-we-are.html">Who We Are</a></li>
+                        <li><a href="about/our-team.html">Our Team</a></li>
+                        <li><a href="about/where-we-work.html">Where We </a></li>
+                        <li><a href="about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+                        <li><a href="about/student-interns.html">Student Interns & Ambassadors</a></li>
+                        <li><a href="about/partner.html">Our Partners</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+                        <li><a href="whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+                        <li><a href="whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+                    </ul>
+                </li>
+                <li><a href="research/research.html">Research</a></li>
+                <li><a href="training/training.html">Training</a></li>
+                <li class="dropdown">
+                    <a href="events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="events/whats-new.html">What's New</a></li>
+                        <li><a href="events/past-events.html">Past Events & Works</a></li>
+                        <li><a href="events/latest-news.html">Latest News Around the World</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+                            <a href="../cowafricaPublic/getinvolved/ambassadors.html"><button class="apply-btn">Apply Here</button>
+                        </li>
+                        <li>
+                            <a href="getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+                            <a href="../cowafricaPublic/getinvolved/student-interns.html"><button class="apply-btn">Apply Here</button></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="media/vital-documents.html">Vital Documents</a></li>
+                        <li><a href="media/event-pictures.html">Event Pictures</a></li>
+                        <li><a href="media/videos.html">Videos</a></li>
+                    </ul>
+                </li>
+                <li><a href="support/support.html">Support Us</a></li>
+            </ul>
+            <!-- Mega Menu Container -->
+            <div class="mega-menu">
+                <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+                <div class="mega-menu-content"></div>
+            </div>
+        </nav>
+    </header>
+<!-- Hero Carousel Section -->
+<section class="hero-carousel">
+    <style>
+        .swiper-slide {
+            position: relative;
+            height: 500px; /* Adjust as needed */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .swiper-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            z-index: 1;
+        }
+        .swiper-slide:nth-child(1) {
+            background-image: url('images/logo3.png');
+        }
+        .swiper-slide:nth-child(2) {
+            background-image: url('/images/malaria.jpg');
+        }
+        .swiper-slide:nth-child(3) {
+            background-image: url('images/hypertension.jpg');
+        }
+        .swiper-slide:nth-child(4) {
+            background-image: url('images/Human Health.jpg');
+        }
+        .swiper-slide:nth-child(5) {
+            background-image: url('images/others/anni.jpg');
+        }
+        .swiper-slide:nth-child(6) {
+            background-image: url('images/environmental.jpg');
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            max-width: 600px;
+        }
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .hero-content .join-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .hero-content .join-btn:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 768px) {
+            .swiper-slide {
+                height: 400px;
+            }
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .hero-content .join-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- News slide 1 -->
+            <div class="swiper-slide" style="background-image:url('images/news/news-1.jpg')">
+                <div class="hero-content">
+                    <h1>Ghana Reports Major Malaria Drop</h1>
+                    <p>New interventions lead to a 45% reduction in malaria cases among children under five in targeted regions.</p>
+                    <a href="events/latest-news.html#malaria-drop" class="join-btn">Read More</a>
+                </div>
+            </div>
+            <!-- News slide 2 -->
+            <div class="swiper-slide" style="background-image:url('images/news/news-2.jpg')">
+                <div class="hero-content">
+                    <h1>Community Immunisation Campaign</h1>
+                    <p>COW-Africa partnered with local clinics to deliver free vaccinations and animal deworming drives in rural communities.</p>
+                    <a href="events/latest-news.html#immunisation-campaign" class="join-btn">Read More</a>
+                </div>
+            </div>
+            <!-- News slide 3 -->
+            <div class="swiper-slide" style="background-image:url('images/news/news-3.jpg')">
+                <div class="hero-content">
+                    <h1>One Welfare Summit 2025 Announced</h1>
+                    <p>Experts from across Africa will convene to discuss integrated approaches to human, animal, and environmental health.</p>
+                    <a href="events/latest-news.html#one-welfare-summit-2025" class="join-btn">Read More</a>
+                </div>
+            </div>
+            <!-- News slide 4 -->
+            <div class="swiper-slide" style="background-image:url('images/news/news-4.jpg')">
+                <div class="hero-content">
+                    <h1>New Research: Zoonotic Risk Mapping</h1>
+                    <p>Our latest study identifies hotspots for potential zoonotic spillover to help target prevention efforts.</p>
+                    <a href="research/research.html#zoonotic-risk" class="join-btn">Read More</a>
+                </div>
+            </div>
+            <!-- News slide 5 -->
+            <div class="swiper-slide" style="background-image:url('images/news/news-5.jpg')">
+                <div class="hero-content">
+                    <h1>Volunteer Drive: Join Our Teams</h1>
+                    <p>COW-Africa is recruiting volunteers for outreach programs—community education, animal clinics, and environmental cleanups.</p>
+                    <a href="getinvolved/getinvolved.html#volunteer" class="join-btn">Read More</a>
+                </div>
+            </div>
+         </div>
+        <!-- Add navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <!-- Add pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+    <!-- Main Content -->
+    <main>
+        <section class="intro">
+            <h2>Our Mission</h2>
+            <p>
+                The Center for One Welfare—Africa is dedicated to promoting, optimizing, and balancing the health and welfare of humans, animals, and the environment; ensuring a harmonious ecosystem through collaborations and integrations across diverse disciplines, research, evidence-based policy advocacy, capacity building, strong leadership, and effective management, thus holistically preventing and mitigating complex health risks arising from the human-animal-environment interface across Africa, and beyond.
+            </p>
+        </section>
+        <section>
+            <h2 class="section-title">Focus Areas</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img src="./images/Human Health.jpg" alt="Human Health">
+                    <div class="card-content">
+                        <h3>Human Health & Welfare</h3>
+                        <p>Promoting community health and disease prevention.</p>
+                        <a href="whatwedo/human-health.html" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./images/others/anni.jpg" alt="Animal Health">
+                    <div class="card-content">
+                        <h3>Animal Health & Welfare</h3>
+                        <p>Advocating for ethical animal care.</p>
+                        <a href="whatwedo/animal-health.html" class="card-link">Learn More</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="./images/environmental.jpg" alt="Environmental Health">
+                    <div class="card-content">
+                        <h3>Environmental Conservation</h3>
+                        <p>Preserving ecosystems and sustainability.</p>
+                        <a href="whatwedo/environmental-health.html" class="card-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="socials">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="privacy/privacy.html">Privacy Policy</a>
+                <a href="mailto:info@cowafrica.org">Contact Us</a>
+            </div>
+        </div>
+        <p>© 2025 COWAfrica. All rights reserved.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- Cookie Notice -->
+    <div class="cookie-notice" id="cookie-notice">
+        <p>We use cookies to enhance your experience. <a href="privacy/privacy.html">Learn more</a></p>
+        <button id="cookie-accept">Accept</button>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            a11y: {
+                enabled: true,
+                prevSlideMessage: 'Previous slide',
+                nextSlideMessage: 'Next slide',
+                paginationBulletMessage: 'Go to slide {{index}}',
+            },
+        });
+    </script>
+    <!-- @ BoldTech Tell =0240819270 -->
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'937764e94b037bb8',t:'MTc0NTg1MjA1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'937e140f8d82afbc',t:'MTc0NTkyMjE0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93a005f54d8d53c3',t:'MTc0NjI3ODA4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

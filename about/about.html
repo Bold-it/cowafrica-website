@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" type="image/png" href="favicon.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | COWAfrica</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <style>
+    /* Hero: centered image + pleasant card look, responsive */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding: 32px;
+      background: #f6f9f8;
+      border-radius: 10px;
+      max-width: 1100px;
+      margin: 20px auto;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+    }
+
+    .hero img {
+      max-width: 360px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      display: block;
+    }
+
+    .hero-text {
+      max-width: 650px;
+      text-align: left;
+    }
+
+    .hero-text h2 {
+      color: #0b6b5b;
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-text p {
+      color: #333;
+      font-size: 1.05rem;
+      margin-top: 0;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        padding: 20px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+      <div class="tagline">
+        <h1>Center for One Welfare - Africa</h1>
+        <p>UNITING FOR A HEALTHIER WORLD</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="../support/support.html" class="top-link">Donate</a>
+      <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="main-navbar">
+    <nav>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i
+              class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../about/who-we-are.html">Who We Are</a></li>
+            <li><a href="../about/our-team.html">Our Team</a></li>
+            <li><a href="../about/where-we-work.html">Where We Are</a></li>
+            <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+            <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+            <li><a href="partner.html">Our Partners</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We
+            Do <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+          </ul>
+        </li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../training/training.html">Training</a></li>
+        <li class="dropdown">
+          <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i
+              class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../events/whats-new.html">What's New</a></li>
+            <li><a href="../events/past-events.html">Past Events & Works</a></li>
+            <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false"
+            aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+              <a href="../getinvolved/student-interns.html"><button class="apply-btn">Apply Here</button></a>
+
+
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false"
+            aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+            <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+            <li><a href="../media/videos.html">Videos</a></li>
+          </ul>
+        </li>
+        <li><a href="../support/support.html">Support Us</a></li>
+      </ul>
+      <!-- Mega Menu Container -->
+      <div class="mega-menu">
+        <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+        <div class="mega-menu-content"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><span aria-current="page">About Us</span></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="../images/abt.png" alt="About COWAfrica">
+    <div class="hero-text">
+      <h2>Team COWAfrica</h2>
+      <p>Advocating for a Unified One Health Approach</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Organization Details -->
+    <section class="intro">
+      <h2 class="section-title">Our Details</h2>
+      <p>
+        Center for One Welfare Africa is a non-profit organization registered under the Companies Act,
+        2019 (Act 992) in Ghana, as a Limited by Guarantee Company, with Registration Number:
+        <strong>CG006970225</strong> and Tax Identification Number (TIN): <strong>C006508912X</strong>.
+      </p>
+      <dl>
+        <dt><strong>Registered Address:</strong></dt>
+        <dd><strong>LC25D, Mem Street, Community 1, Akosombo, EA-0458, Eastern Region, Ghana</strong></dd>
+        <dt><strong>Mailing Address:</strong></dt>
+        <dd><strong>P.O. Box Ak447, Akosombo, E/R, Ghana</strong></dd>
+      </dl>
+    </section>
+
+    <section class="history">
+      <h2 class="section-title">OUR HISTORY</h2>
+      <p>
+        The Center for One Welfare – Africa (COW-Africa) was established by Richard Klottey Botchway, a Veterinary
+        Paraprofessional (Veterinary Technician) focused solely on animal health concerns as RicKELL Animal Care
+        Services (RACS), a profitable animal health service provider for pet owners and livestock farmers in Ghana,
+        starting in September 2011, mainly serving cities and peri-urban communities. In April 2014, RACS rebranded as
+        RicKELL Animal Health Consult &amp; Services (RAHCS), with expanded expertise and a broader coverage area.
+      </p>
+      <p>
+        In March 2018, due to concerns and outbreaks of Hepatitis B, Ebola Virus Disease, and Lassa Fever in neighboring
+        countries, RAHCS began public health education in rural communities, religious gatherings, and other places.
+        This initiative was led by Fredricka Nayram Affram, a Nursing Assistant Clinicals (NAC). Realizing that most
+        rural community dwellers could not afford the costs of vaccinations, deworming, and treatments for their
+        backyard farm livestock, which provide their livelihood, RAHCS was transformed into a Non-Profit organization
+        called RicKELL Animal Welfare – Ghana (RAW-GH). This led to an increase in the reach of the health campaigns.
+        More health screenings, deworming, and animal healthcare were carried out through Free-Mass, Subsidized, or
+        Fully Paid services (for the wealthy), funded by sponsorships, grants, and donations from religious groups
+        (during crusades and evangelism events), community leaders, industry players in the health sector, corporate
+        organizations, and others.
+      </p>
+      <p>
+        Drawing inspiration from the One Health concept, the idea of creating an umbrella organization to address human
+        and animal health issues came to fruition in 2020 with the establishment of the Center for One Welfare (COW) in
+        Ghana. By networking with professionals across Africa, COW's activities and operations have expanded beyond
+        Ghana's borders. To create a unified body and to enhance our reach and impact, the Center for One Welfare was
+        fully incorporated in February 2025 as the CENTER FOR ONE WELFARE – AFRICA, abbreviated as COW-Africa, with the
+        slogan, ‘Uniting for a Healthier World’, which reflects our aim to garner effort to improve the health and
+        well-being of all species. We are committed to optimizing multistage and multisectoral collaborative actions
+        that integrate human, animal, and environmental health, striving for a healthier and more resilient future for
+        all.
+      </p>
+    </section>
+
+    <section class="join-us">
+      <h2 class="section-title">Join Us in Creating a Healthier Africa</h2>
+      <p>
+        Whether through volunteering, becoming an ambassador, or supporting our initiatives, your contribution makes a
+        difference in building resilient, healthy communities across Africa.
+      </p>
+      <div class="cta-buttons">
+        <a href="../support/support.html" class="join-btn">Donate Now</a>
+        <a href="../getinvolved/getinvolved.html" class="join-btn">Get Involved</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@cowafrica.org">Contact Us</a>
+      </div>
+    </div>
+    <p>© 2025 COWAfrica. All rights reserved.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>

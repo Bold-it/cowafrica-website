@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypertension - COWAfrica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="/images/cowa-logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .hypertension-section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hypertension-section h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .hypertension-section h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 15px 0 10px;
+        }
+
+        .hypertension-section p,
+        .hypertension-section ul {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .hypertension-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .hypertension-section img {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 8px;
+        }
+
+        .hypertension-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .hypertension-section th,
+        .hypertension-section td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .hypertension-section th {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .hypertension-section tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        .hypertension-section .back-link {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1rem;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .hypertension-section .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hypertension-section {
+                padding: 15px;
+            }
+
+            .hypertension-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .hypertension-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .hypertension-section img {
+                max-width: 100%;
+            }
+
+            .hypertension-section th,
+            .hypertension-section td {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+            <div class="tagline">
+                <h1>Center for One Welfare Africa</h1>
+                <p>UNITING FOR A HEALTHIER WORLD</p>
+            </div>
+        </div>
+        <div class="top-actions">
+            <a href="../support/support.html" class="top-link">Donate</a>
+            <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+        </div>
+    </div>
+
+    <header class="main-navbar">
+        <nav>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+            <ul class="main-nav">
+                <li><a href="../index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../about/who-we-are.html">Who We Are</a></li>
+                        <li><a href="../about/our-team.html">Our Team</a></li>
+                        <li><a href="../about/where-we-work.html">Where We Work</a></li>
+                        <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+                        <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../whatwedo/what-we-do.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation
+                                Advocacy</a></li>
+                    </ul>
+                </li>
+                <li><a href="../research/research.html">Research</a></li>
+                <li><a href="../training/training.html">Training</a></li>
+                <li class="dropdown">
+                    <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../events/whats-new.html">What's New</a></li>
+                </li>
+                <li class="dropdown">
+                    <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+                        <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+                        <li><a href="../media/videos.html">Videos</a></li>
+                    </ul>
+                </li>
+                <li><a href="../support/support.html">Support Us</a></li>
+            </ul>
+        </nav>
+        <div class="mega-menu">
+            <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+            <div class="mega-menu-content"></div>
+        </div>
+    </header>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../events/events.html">Events</a></li>
+            <li><a href="../events/past-events.html">Past Events & Works</a></li>
+            <li><span>Hypertension</span></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hypertension-section">
+            <h2>Hypertension (High Blood Pressure)</h2>
+            <img src="../images/hypertension.jpg" alt="Hypertension Illustration">
+
+            <h3>Overview</h3>
+            <p>
+                Hypertension, or high blood pressure, occurs when your blood pressure is 140/90 mmHg or higher. It is a
+                common condition that can be serious if untreated, often presenting without symptoms. The only way to
+                confirm hypertension is through regular blood pressure checks by a health professional or automated
+                device, followed by professional evaluation to assess risk and related conditions.
+            </p>
+
+            <h3>Risk Factors</h3>
+            <p>Factors that increase the risk of developing hypertension include:</p>
+            <ul>
+                <li>Family history of hypertension</li>
+                <li>High salt intake, diet rich in saturated and trans fats, low intake of fruits and vegetables</li>
+                <li>Age over 65</li>
+                <li>Physical inactivity, overweight, or obesity</li>
+                <li>Tobacco use and excessive alcohol consumption</li>
+                <li>Co-existing conditions like diabetes or kidney disease</li>
+                <li>Environmental factors, such as air pollution</li>
+            </ul>
+
+            <h3>Diagnosis</h3>
+            <p>
+                Hypertension is diagnosed when systolic blood pressure is ≥140 mmHg or diastolic blood pressure is ≥90
+                mmHg (140/90) on two separate days. Regular blood pressure monitoring is essential for early detection,
+                as many individuals experience no symptoms. A quick and painless measurement by a health professional is
+                the most reliable method.
+            </p>
+
+            <h3>Symptoms</h3>
+            <p>
+                Most people with hypertension have no symptoms. However, very high blood pressure (≥180/120 mmHg) may
+                cause:
+            </p>
+            <ul>
+                <li>Headaches</li>
+                <li>Blurred vision</li>
+                <li>Chest pain</li>
+                <li>Dizziness</li>
+                <li>Difficulty breathing</li>
+                <li>Nausea and vomiting</li>
+                <li>Anxiety and confusion</li>
+                <li>Ringing in the ears</li>
+                <li>Nosebleeds</li>
+                <li>Abnormal heart rhythms</li>
+            </ul>
+            <p>
+                Regular blood pressure checks are critical, as symptoms may only appear in severe cases.
+            </p>
+
+            <h3>Treatment, Prevention & Control</h3>
+            <p>
+                The goal for most individuals is to maintain blood pressure below 140/90 mmHg. Lifestyle changes can
+                significantly lower blood pressure, including:
+            </p>
+            <ul>
+                <li>Adopting a healthy, low-salt diet rich in vegetables and fruits</li>
+                <li>Quitting tobacco and reducing alcohol consumption</li>
+                <li>Increasing physical activity</li>
+                <li>Losing weight if overweight or obese</li>
+            </ul>
+            <p>
+                Some individuals may require medications, prescribed based on individual health conditions and
+                doctor-recommended goals. Adherence to prescribed treatments is essential.
+            </p>
+            <table>
+                <tr>
+                    <th>DO</th>
+                    <th>DON’T</th>
+                </tr>
+                <tr>
+                    <td>Eat more vegetables and fruits</td>
+                    <td>Eat too much salty food</td>
+                </tr>
+                <tr>
+                    <td>Sit less</td>
+                    <td>Eat foods high in saturated or trans fats</td>
+                </tr>
+                <tr>
+                    <td>Be more physically active</td>
+                    <td>Smoke or use tobacco</td>
+                </tr>
+                <tr>
+                    <td>Lose weight if you’re overweight or obese</td>
+                    <td>Drink too much alcohol</td>
+                </tr>
+                <tr>
+                    <td>Take your prescribed medicines holistically</td>
+                    <td>Miss or share medication</td>
+                </tr>
+            </table>
+
+            <h3>Complications</h3>
+            <p>
+                Uncontrolled hypertension can lead to serious health issues, including:
+            </p>
+            <ul>
+                <li>Heart damage</li>
+                <li>Kidney damage</li>
+                <li>Hardened arteries</li>
+                <li>Reduced blood and oxygen flow to the heart, causing chest pain</li>
+                <li>Stroke due to burst or blocked arteries in the brain</li>
+            </ul>
+            <p>
+                Regular blood pressure monitoring is key to reducing these risks and maintaining overall health.
+            </p>
+
+            <a href="../events/past-events.html" class="back-link">Back to Past Events</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="socials">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="../privacy/privacy.html">Privacy Policy</a>
+                <a href="/cdn-cgi/l/email-protection#e38a8d858ca3818d958081958e8486c98c9184">Contact Us</a>
+            </div>
+        </div>
+        <p>© 2025 COWAfrica. All rights reserved.</p>
+    </footer>
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videos | COWAfrica</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <style>
+    /* CSS for Videos Page */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .intro h2 {
+      font-size: 2.5rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .intro p {
+      font-size: 1.1rem;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .search-filter-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .search-bar {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px 40px 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .search-bar input:focus {
+      border-color: #00796b;
+      box-shadow: 0 0 5px rgba(0,121,107,0.2);
+      outline: none;
+    }
+    .search-bar i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #00796b;
+    }
+    .filter-group {
+      min-width: 200px;
+    }
+    .filter-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .filter-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .filter-group select:focus {
+      border-color: #00796b;
+      outline: none;
+    }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .video-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+    .video-thumbnail {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+    .video-thumbnail iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .video-card:hover .video-play-overlay {
+      opacity: 1;
+    }
+    .video-play-overlay i {
+      color: white;
+      font-size: 3rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    .video-content {
+      padding: 15px;
+    }
+    .video-content h3 {
+      font-size: 1.3rem;
+      color: #00796b;
+      margin-bottom: 10px;
+    }
+    .video-meta {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .video-meta span {
+      margin-right: 15px;
+    }
+    .video-meta i {
+      margin-right: 5px;
+    }
+    .video-content p {
+      font-size: 0.9rem;
+      color: #333;
+    }
+    .cta-section {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #e0f2e9;
+      border-radius: 8px;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .cta-section p {
+      font-size: 1rem;
+      color: #333;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+    .cta-section a {
+      display: inline-block;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .cta-section a:hover {
+      background-color: #005f5b;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+    .back-to-top:hover {
+      background-color: #005f5b;
+    }
+    @media (max-width: 768px) {
+      .videos-grid {
+        grid-template-columns: 1fr;
+      }
+      .search-filter-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .search-bar,
+      .filter-group {
+        width: 100%;
+        min-width: unset;
+      }
+      .intro h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+      <div class="tagline">
+        <h1>Center for One Welfare - Africa</h1>
+        <p>UNITING FOR A HEALTHIER WORLD</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="../support/support.html" class="top-link">Donate</a>
+      <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="main-navbar">
+    <nav>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../about/who-we-are.html">Who We Are</a></li>
+            <li><a href="../about/our-team.html">Our Team</a></li>
+            <li><a href="../about/where-we-work.html">Where We Are</a></li>
+            <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+            <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+            <li><a href="about/partner.html">Our Partners</a></li>
+
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+          </ul>
+        </li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../training/training.html">Training</a></li>
+        <li class="dropdown">
+          <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../events/whats-new.html">What's New</a></li>
+            <li><a href="../events/past-events.html">Past Events & Works</a></li>
+            <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="../getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+            <li>
+              <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+            <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+            <li><a href="../media/videos.html">Videos</a></li>
+          </ul>
+        </li>
+        <li><a href="../support/support.html">Support Us</a></li>
+      </ul>
+      <!-- Mega Menu Container -->
+      <div class="mega-menu">
+        <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+        <div class="mega-menu-content"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../media/media.html">Media/Resources</a></li>
+      <li><span aria-current="page">Videos</span></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="intro">
+      <h2>Our Videos</h2>
+      <p>
+        Watch documentaries, interviews, and educational content showcasing COWAfrica’s One Welfare approach to human health, animal welfare, and environmental conservation across Africa. Use the search and filter options below to explore our video library.
+      </p>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-filter-container">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search videos..." onkeyup="filterVideos()">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="filter-group">
+        <label for="categoryFilter">Filter by Category</label>
+        <select id="categoryFilter" onchange="filterVideos()">
+          <option value="">All Categories</option>
+          <option value="documentary">Documentaries</option>
+          <option value="interview">Interviews</option>
+          <option value="educational">Educational Content</option>
+          <option value="event">Event Highlights</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Videos Grid -->
+    <section class="videos-grid" id="videosGrid">
+      <!-- Placeholder Video 1 -->
+      <div class="video-card" data-category="documentary">
+        <div class="video-thumbnail">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="One Health in Action: A Documentary" allowfullscreen></iframe>
+          <div class="video-play-overlay">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="video-content">
+          <h3>One Health in Action: A Documentary</h3>
+          <div class="video-meta">
+            <span><i class="fas fa-folder"></i> Documentaries</span>
+          </div>
+          <p>
+            A documentary highlighting COWAfrica’s efforts to promote One Health principles in rural African communities.
+          </p>
+        </div>
+      </div>
+
+      <!-- Placeholder Video 2 -->
+      <div class="video-card" data-category="interview">
+        <div class="video-thumbnail">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Interview with Dr. Jane Doe" allowfullscreen></iframe>
+          <div class="video-play-overlay">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="video-content">
+          <h3>Interview with Dr. Jane Doe</h3>
+          <div class="video-meta">
+            <span><i class="fas fa-folder"></i> Interviews</span>
+          </div>
+          <p>
+            Dr. Jane Doe, a leading One Health expert, discusses the importance of integrated health approaches.
+          </p>
+        </div>
+      </div>
+
+      <!-- Placeholder Video 3 -->
+      <div class="video-card" data-category="educational">
+        <div class="video-thumbnail">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Introduction to One Welfare" allowfullscreen></iframe>
+          <div class="video-play-overlay">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="video-content">
+          <h3>Introduction to One Welfare</h3>
+          <div class="video-meta">
+            <span><i class="fas fa-folder"></i> Educational Content</span>
+          </div>
+          <p>
+            An educational video explaining the core principles of One Welfare and its impact on global health.
+          </p>
+        </div>
+      </div>
+
+      <!-- Placeholder Video 4 -->
+      <div class="video-card" data-category="event">
+        <div class="video-thumbnail">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="2024 Community Outreach Highlights" allowfullscreen></iframe>
+          <div class="video-play-overlay">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="video-content">
+          <h3>2024 Community Outreach Highlights</h3>
+          <div class="video-meta">
+            <span><i class="fas fa-folder"></i> Event Highlights</span>
+          </div>
+          <p>
+            Highlights from our 2024 community outreach programs across East Africa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+      <h2>Looking for a Specific Video?</h2>
+      <p>
+        If you can’t find the video you’re looking for, please reach out to us, and we’ll assist you.
+      </p>
+      <a href="/cdn-cgi/l/email-protection#a48d8a828ba4878b938582968d8785ca8b9683db9791868e818790d9b28d80818bc4b6819591819790">Contact Us</a>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/privacy.html">Privacy Policy</a>
+        <a href="../about/about.html">About Us</a>
+      </div>
+    </div>
+    <p>© 2025 COWAfrica. All rights reserved.</p>
+  </footer>
+
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="../script.js"></script>
+  <script>
+    // Filter Videos Functionality
+    function filterVideos() {
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const categoryFilter = document.getElementById('categoryFilter').value;
+      const videoCards = document.querySelectorAll('.video-card');
+
+      videoCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const category = card.getAttribute('data-category');
+
+        const matchesSearch = title.includes(searchInput);
+        const matchesCategory = categoryFilter === '' || category === categoryFilter;
+
+        if (matchesSearch && matchesCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Back to Top Button Visibility
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('#back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+  </script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'938623829f43457e',t:'MTc0NjAwNjY2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

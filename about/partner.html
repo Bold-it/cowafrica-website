@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Us | COWAfrica</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <style>
+    /* Enhanced CSS for Get Involved Page */
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .partner-card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .partner-logo img {
+      max-width: 150px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .partner-card h3 {
+      font-size: 1.25rem;
+      color: #00796b;
+      margin-bottom: 10px;
+    }
+
+    .partner-card p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .partner-link {
+      color: #00796b;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    .partner-link:hover {
+      color: #005f5b;
+    }
+
+    .partner-link i {
+      margin-left: 5px;
+    }
+
+    .coming-soon-card {
+      background-color: #f9f9f9;
+      border: 1px dashed #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .coming-soon-icon {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 10px;
+    }
+
+    .coming-soon-card h3 {
+      font-size: 1.25rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .coming-soon-card p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .cta-section {
+      background-color: #e0f2e9;
+      padding: 40px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      max-width: 700px;
+      margin: 0 auto 20px;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .cta-button .form-submit {
+      background-color: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button .form-submit:hover {
+      background-color: #005f5b;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      display: none;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-to-top:hover {
+      background-color: #005f5b;
+    }
+
+    @media (max-width: 768px) {
+
+      .partner-grid,
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .partner-logo img {
+        max-width: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+      <div class="tagline">
+        <h1>Center for One Welfare - Africa</h1>
+        <p>UNITING FOR A HEALTHIER WORLD</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="../support/support.html" class="top-link">Donate</a>
+      <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="main-navbar">
+    <nav>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i
+              class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../about/who-we-are.html">Who We Are</a></li>
+            <li><a href="../about/our-team.html">Our Team</a></li>
+            <li><a href="../about/where-we-work.html">Where We Work</a></li>
+            <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+            <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We
+            Do <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+          </ul>
+        </li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../training/training.html">Training</a></li>
+        <li class="dropdown">
+          <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i
+              class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../events/whats-new.html">What's New</a></li>
+            <li><a href="../events/past-events.html">Past Events & Works</a></li>
+            <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false"
+            aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="student-interns.html">Student Interns & Ambassadors</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false"
+            aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+            <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+            <li><a href="../media/videos.html">Videos</a></li>
+          </ul>
+        </li>
+        <li><a href="../support/support.html">Support Us</a></li>
+      </ul>
+      <!-- Mega Menu Container -->
+      <div class="mega-menu">
+        <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+        <div class="mega-menu-content"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><span aria-current="page">Join Us</span></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+
+
+
+    <!-- Current Partners -->
+    <section>
+      <h2 class="section-title">Our Valued Partners</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 30px;">
+        We are proud to collaborate with these organizations that share our vision for integrated health solutions.
+        Watch this space as we continue to build new partnerships across Africa.
+      </p>
+      <div class="partner-grid">
+        <!-- RicKELL Animal Welfare -->
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="../images/partners/rickel.jpg" alt="RicKELL Animal Welfare Logo">
+          </div>
+          <h3></h3>
+          <p></p>
+          <a href="#" class="partner-link">Visit Website <i class="fa fa-external-link-alt"></i></a>
+        </div>
+
+        <!-- RiCKELL Animal Health -->
+        <div class="partner-card">
+          <div class="partner-logo">
+            <img src="../images/partners/rikel.jpg" alt="RiCKELL Animal Health Logo">
+          </div>
+          <h3></h3>
+          <p></p>
+          <a href="#" class="partner-link">Visit Website <i class="fa fa-external-link-alt"></i></a>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Become a Partner CTA -->
+    <section class="cta-section">
+      <h2>Become a Partner</h2>
+      <p>
+        We're actively seeking new collaborations with organizations and institutions that align with our mission.
+        Join us in creating sustainable impact across Africa.
+      </p>
+      <div class="cta-button">
+        <a href="mailto:info@cowafrica.org?subject=Partnership Inquiry" class="form-submit">Explore Partnership
+          Opportunities</a>
+      </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section
+      style="background-color: #f9f9f9; padding: 40px; border-radius: 8px; margin-top: 40px; text-align: center;">
+      <h2>More Ways to Support COWAfrica</h2>
+      <p style="max-width: 700px; margin: 20px auto;">
+        In addition to joining as an ambassador, intern, or partner, you can support our work through donations or by
+        spreading the word about our mission. Have questions about how you can contribute? Reach out to us!
+      </p>
+      <div class="cta-buttons">
+        <a href="../support/support.html" class="join-btn">Support Us</a>
+        <a href="mailto:info@cowafrica.org" class="join-btn">Contact Us</a>
+      </div>
+    </section>
+
+    <!-- Subpage Links Section -->
+    <section>
+      <h2 class="section-title">Opportunities for Individuals</h2>
+      <div class="team-grid" style="margin-top: 30px;">
+
+        <!-- Student Interns & Ambassadors -->
+        <div class="card"
+          style="border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; background-color: #fff;">
+          <div class="card-content" style="padding: 15px;">
+            <h3 style="font-size: 1.5rem; color: #00796b; margin: 15px 0;">Student Interns & Ambassadors</h3>
+            <p style="text-align: left;">
+              Gain hands-on experience and contribute to our mission as a student intern or ambassador, working on
+              projects that impact communities across Africa.
+            </p>
+            <a href="student-interns.html" class="join-btn" style="margin-top: 15px;">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@cowafrica.org">Contact Us</a>
+      </div>
+      <p>© 2025 COWAfrica. All rights reserved.</p>
+  </footer>
+
+
+  <script src="../script.js"></script>
+  <script>
+    // Back to Top Button Visibility
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('#back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+  </script>
+  <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'938623829f43457e',t:'MTc0NjAwNjY2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>

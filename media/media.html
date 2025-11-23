@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media/Resources | COWAfrica</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <style>
+    /* Modernized CSS for Media/Resources Page */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .intro h2 {
+      font-size: 2.5rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .intro p {
+      font-size: 1.1rem;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .card-img img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid #00796b;
+    }
+    .card-content {
+      padding: 20px;
+      text-align: center;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      color: #00796b;
+      margin-bottom: 10px;
+    }
+    .card-text {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .card-link:hover {
+      background-color: #005f5b;
+    }
+    .card-link i {
+      margin-left: 8px;
+    }
+    .form-container {
+      background: linear-gradient(45deg, #e0f2e9, #ffffff);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .form-container h2 {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .form-container p {
+      font-size: 1rem;
+      color: #333;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    #mediaRequestForm {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .form-label.required::after {
+      content: '*';
+      color: #d32f2f;
+      margin-left: 5px;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: #00796b;
+      box-shadow: 0 0 5px rgba(0,121,107,0.2);
+      outline: none;
+    }
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-submit {
+      background-color: #00796b;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+      display: block;
+      margin: 0 auto;
+    }
+    .form-submit:hover {
+      background-color: #005f5b;
+    }
+    .form-submit:active {
+      transform: scale(0.98);
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 5px;
+    }
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 200px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    .confirmation-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .modal-content h3 {
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .modal-content p {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .modal-content button {
+      background-color: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .modal-content button:hover {
+      background-color: #005f5b;
+    }
+    .stay-updated {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #e0f2e9;
+      border-radius: 8px;
+    }
+    .stay-updated h2 {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+    .stay-updated p {
+      max-width: 700px;
+      margin: 0 auto 20px;
+      font-size: 1rem;
+      color: #333;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .social-links a {
+      font-size: 1.5rem;
+      color: #00796b;
+      transition: color 0.3s ease;
+    }
+    .social-links a:hover {
+      color: #005f5b;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+    .back-to-top:hover {
+      background-color: #005f5b;
+    }
+    @media (max-width: 768px) {
+      .card-container {
+        grid-template-columns: 1fr;
+      }
+      .card-img img {
+        height: 150px;
+      }
+      .intro h2 {
+        font-size: 2rem;
+      }
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+      <div class="tagline">
+        <h1>Center for One Welfare - Africa</h1>
+        <p>UNITING FOR A HEALTHIER WORLD</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="../support/support.html" class="top-link">Donate</a>
+      <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="main-navbar">
+    <nav>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../about/who-we-are.html">Who We Are</a></li>
+            <li><a href="../about/our-team.html">Our Team</a></li>
+            <li><a href="../about/where-we-work.html">Where We Are</a></li>
+            <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+            <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+            <li><a href="about/partner.html">Our Partners</a></li>
+
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+          </ul>
+        </li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../training/training.html">Training</a></li>
+        <li class="dropdown">
+          <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../events/whats-new.html">What's New</a></li>
+            <li><a href="../events/past-events.html">Past Events & Works</a></li>
+            <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="../getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+            <li>
+              <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+            <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+            <li><a href="../media/videos.html">Videos</a></li>
+          </ul>
+        </li>
+        <li><a href="../support/support.html">Support Us</a></li>
+      </ul>
+      <!-- Mega Menu Container -->
+      <div class="mega-menu">
+        <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+        <div class="mega-menu-content"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><span aria-current="page">Media/Resources</span></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="intro">
+      <h2>Our Media Resources</h2>
+      <p>
+        Welcome to the COWAfrica media hub, where you can explore vital documents, browse through our event galleries, and watch videos showcasing our work in human health, animal welfare, and environmental conservation across Africa.
+      </p>
+    </section>
+
+    <!-- Media Categories -->
+    <section>
+      <div class="card-container">
+        <!-- Vital Documents Card -->
+        <div class="card">
+          <div class="card-img">
+            <img src="../images/documents-icon.jpg" alt="Vital Documents">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Vital Documents</h3>
+            <p class="card-text">
+              Access our annual reports, policy briefs, research papers, and other important publications.
+            </p>
+            <a href="vital-documents.html" class="card-link">Browse Documents <i class="fa fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Event Pictures Card -->
+        <div class="card">
+          <div class="card-img">
+            <img src="../images/gallery-icon.jpg" alt="Event Pictures">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Event Pictures</h3>
+            <p class="card-text">
+              View photo galleries from our community outreach programs, conferences, and field activities.
+            </p>
+            <a href="event-pictures.html" class="card-link">View Gallery <i class="fa fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Videos Card -->
+        <div class="card">
+          <div class="card-img">
+            <img src="../images/video-icon.jpg" alt="Videos">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">Videos</h3>
+            <p class="card-text">
+              Watch documentaries, interviews, and educational content about our One Welfare approach.
+            </p>
+            <a href="videos.html" class="card-link">Watch Videos <i class="fa fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Media Request Section -->
+    <section class="form-container">
+      <h2>Media Request</h2>
+      <p>Looking for specific media resources or want to feature our work? Fill out the form below, and we’ll get back to you soon.</p>
+      
+      <form id="mediaRequestForm" action="mailto:info@cowafrica.org?subject=Media Request" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name" class="form-label required">Full Name
+            <span class="tooltip">
+              <i class="fas fa-info-circle"></i>
+              <span class="tooltiptext">Please provide your full name for contact purposes.</span>
+            </span>
+          </label>
+          <input type="text" id="name" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="form-label required">Email Address
+            <span class="tooltip">
+              <i class="fas fa-info-circle"></i>
+              <span class="tooltiptext">We’ll use this email to respond to your request.</span>
+            </span>
+          </label>
+          <input type="email" id="email" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="organization" class="form-label">Organization</label>
+          <input type="text" id="organization" class="form-input">
+        </div>
+        
+        <div class="form-group">
+          <label for="requestType" class="form-label required">Request Type</label>
+          <select id="requestType" class="form-select" required>
+            <option value="">Select an option</option>
+            <option value="interview">Interview Request</option>
+            <option value="media">Media Coverage</option>
+            <option value="resources">Additional Resources</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message" class="form-label required">Details of Request</label>
+          <textarea id="message" class="form-textarea" rows="5" required placeholder="Please provide details about your request, such as specific resources needed or the purpose of your inquiry."></textarea>
+        </div>
+        
+        <button type="submit" class="form-submit">Submit Request</button>
+      </form>
+    </section>
+
+    <!-- Stay Updated Section -->
+    <section class="stay-updated">
+      <h2>Stay Updated</h2>
+      <p>
+        Follow us on social media to stay informed about our latest media releases, event updates, and new resources as they become available.
+      </p>
+      <div class="social-links">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Confirmation Modal -->
+  <div class="confirmation-modal" id="confirmationModal">
+    <div class="modal-content">
+      <h3>Request Submitted!</h3>
+      <p>Thank you for your media request. We will review your submission and get back to you soon.</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@cowafrica.org">Contact Us</a>
+      </div>
+    </div>
+    <p>© 2025 COWAfrica. All rights reserved.</p>
+  </footer>
+
+  <!-- Cookie Notice -->
+  <div class="cookie-notice" id="cookie-notice">
+    <p>We use cookies to enhance your experience. <a href="../privacy/privacy.html">Learn more</a></p>
+    <button id="cookie-accept">Accept</button>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="../script.js"></script>
+  <script>
+    // Form Submission Handling
+    const mediaRequestForm = document.getElementById('mediaRequestForm');
+    mediaRequestForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('confirmationModal');
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        mediaRequestForm.submit();
+      }, 2000);
+    });
+
+    // Close Modal
+    function closeModal() {
+      document.getElementById('confirmationModal').style.display = 'none';
+    }
+
+    // Back to Top Button Visibility
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('#back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+  </script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'938623829f43457e',t:'MTc0NjAwNjY2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="favicon.jpg">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - COWAfrica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="/images/cowa-logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            width: 100%;
+            max-width: 200px;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .apply-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .apply-btn:active {
+            transform: translateY(0);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            max-width: 500px;
+            width: 90%;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .close-btn:hover {
+            background-color: #5a6268;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .apply-btn {
+                max-width: 100%;
+            }
+
+            .section {
+                padding: 15px;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.querySelector('.modal');
+            const modalTitle = document.querySelector('#modal-title');
+            const modalMessage = document.querySelector('#modal-message');
+            const closeBtn = document.querySelector('.close-btn');
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+
+            modal.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body id="top">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+            <div class="tagline">
+                <h1>Center for One Welfare Africa</h1>
+                <p>UNITING FOR A HEALTHIER WORLD</p>
+            </div>
+        </div>
+        <div class="top-actions">
+            <a href="../support/support.html" class="top-link">Donate</a>
+            <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="main-navbar">
+        <nav>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+            <ul class="main-nav">
+                <li><a href="../index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../about/who-we-are.html">Who We Are</a></li>
+                        <li><a href="../about/our-team.html">Our Team</a></li>
+                        <li><a href="../about/where-we-work.html">Where We Work</a></li>
+                        <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+                        <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../whatwedo/what-we-do.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation
+                                Advocacy</a></li>
+                    </ul>
+                </li>
+                <li><a href="../research/research.html">Research</a></li>
+                <li><a href="../training/training.html">Training</a></li>
+                <li class="dropdown">
+                    <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../events/whats-new.html">What's New</a></li>
+                        <li><a href="../events/past-events.html">Past Events & Works</a></li>
+                        <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+                            <a href="../getinvolved/student-interns.html"><button class="apply-btn">Apply
+                                    Here</button></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+                        <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+                        <li><a href="../media/videos.html">Videos</a></li>
+                    </ul>
+                </li>
+                <li><a href="../support/support.html">Support Us</a></li>
+            </ul>
+        </nav>
+        <div class="mega-menu">
+            <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+            <div class="mega-menu-content"></div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><span>Join Us</span></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="intro section">
+            <h2 class="section-title">Join Our Mission</h2>
+            <p>
+                At the Center for One Welfare Africa (COWAfrica), we are uniting passionate individuals to advance One
+                Health principles across the continent. Whether you're a seasoned professional or a dedicated student,
+                you can make a difference through our Country Ambassadors & Representatives or Student Interns &
+                Ambassadors programs. Join us to advocate for human health, animal welfare, and environmental
+                conservation, and help create a healthier world.
+            </p>
+            <div class="button-container">
+                <a href="../getinvolved/student-interns.html" class="apply-btn">Apply as Student Intern</a>
+            </div>
+        </section>
+
+        <section class="program-info section">
+            <h2 class="section-title">Our Programs</h2>
+            <h3>Country Ambassadors & Representatives</h3>
+            <p>
+                Lead the charge for One Health in your country. Our Country Ambassador Program seeks passionate leaders
+                to represent COWAfrica at a national level, advocate for interconnected health solutions, foster
+                partnerships, and drive impactful initiatives. Ideal for professionals with a commitment to health and
+                sustainability.
+            </p>
+            <h3>Student Interns & Ambassadors</h3>
+            <p>
+                Gain hands-on experience and make a difference as a student. Our Student Internship and Ambassador
+                Program offers university students and recent graduates opportunities to work on One Health projects,
+                develop professional skills, and expand their networks. Perfect for young leaders passionate about
+                health and conservation.
+            </p>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <h2 id="modal-title">Message</h2>
+            <p id="modal-message">This is a placeholder message.</p>
+            <button class="close-btn" aria-label="Close modal">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="socials">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="../privacy/privacy.html">Privacy Policy</a>
+                <a href="mailto:info@cowafrica.org">Contact Us</a>
+            </div>
+        </div>
+        <p>© 2025 COWAfrica. All rights reserved.</p>
+    </footer>
+
+
+</body>
+
+</html>

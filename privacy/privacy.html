@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | COWAfrica</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <style>
+    /* CSS for Privacy Page */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .hero-section {
+      background: linear-gradient(45deg, #e0f2e9, #ffffff);
+      padding: 60px 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .hero-section h1 {
+      font-size: 2.8rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .hero-section p {
+      font-size: 1.1rem;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .privacy-policy {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    .privacy-policy h2 {
+      font-size: 2rem;
+      color: #00796b;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .accordion {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .accordion-item {
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 10px;
+    }
+    .accordion-header {
+      background-color: #f9f9f9;
+      padding: 15px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .accordion-header:hover {
+      background-color: #e0f2e9;
+      transform: translateY(-2px);
+    }
+    .accordion-header h3 {
+      font-size: 1.2rem;
+      color: #333;
+      margin: 0;
+    }
+    .accordion-header i {
+      font-size: 1.2rem;
+      color: #00796b;
+      transition: transform 0.3s ease;
+    }
+    .accordion-header.active i {
+      transform: rotate(180deg);
+    }
+    .accordion-content {
+      display: none;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 0 0 8px 8px;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    .accordion-content p {
+      margin: 10px 0;
+    }
+    .accordion-content ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+    .accordion-content ul li {
+      margin-bottom: 8px;
+    }
+    .accordion-content a {
+      color: #00796b;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .accordion-content a:hover {
+      color: #005f5b;
+      text-decoration: underline;
+    }
+    .cta-section {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #e0f2e9;
+      border-radius: 8px;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .cta-section p {
+      font-size: 1rem;
+      color: #333;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+    .cta-section a {
+      display: inline-block;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+    .cta-section a:hover {
+      background-color: #005f5b;
+    }
+    .cta-section a:active {
+      transform: scale(0.98);
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+    .back-to-top:hover {
+      background-color: #005f5b;
+    }
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2.2rem;
+      }
+      .hero-section p {
+        font-size: 1rem;
+      }
+      .privacy-policy h2 {
+        font-size: 1.8rem;
+      }
+      .accordion-header h3 {
+        font-size: 1.1rem;
+      }
+      .accordion-content {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+      <div class="tagline">
+        <h1>Center for One Welfare - Africa</h1>
+        <p>UNITING FOR A HEALTHIER WORLD</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="../support/support.html" class="top-link">Donate</a>
+      <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="main-navbar">
+    <nav>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../about/who-we-are.html">Who We Are</a></li>
+            <li><a href="../about/our-team.html">Our Team</a></li>
+            <li><a href="../about/where-we-work.html">Where We Work</a></li>
+            <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+            <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+          </ul>
+        </li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../training/training.html">Training</a></li>
+        <li class="dropdown">
+          <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../events/whats-new.html">What's New</a></li>
+            <li><a href="../events/past-events.html">Past Events & Works</a></li>
+            <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="../getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+            <li>
+              <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+            <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+            <li><a href="../media/videos.html">Videos</a></li>
+          </ul>
+        </li>
+        <li><a href="../support/support.html">Support Us</a></li>
+      </ul>
+      <!-- Mega Menu Container -->
+      <div class="mega-menu">
+        <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+        <div class="mega-menu-content"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><span aria-current="page">Privacy Policy</span></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <h1>Privacy Policy</h1>
+      <p>
+        At COWAfrica, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or engage with our services.
+      </p>
+    </section>
+
+    <!-- Privacy Policy Document -->
+    <section class="privacy-policy">
+      <h2>Our Privacy Policy</h2>
+      <div class="accordion">
+        <!-- Introduction -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>1. Introduction</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>
+              Welcome to the Center for One Welfare Africa (COWAfrica). We value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we handle your data when you visit our website, make a donation, volunteer, or engage with our programs.
+            </p>
+            <p>
+              By using our website, you agree to the practices described in this policy. If you have any questions, please contact us at <a href="/cdn-cgi/l/email-protection#8afaf8e3fcebe9f3cae9e5fdebecf8e3e9eba4e5f8ed"><span class="__cf_email__" data-cfemail="b4c4c6ddc2d5d7cdf4d7dbc3d5d2c6ddd7d59adbc6d3">[email&#160;protected]</span></a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Information We Collect -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>2. Information We Collect</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>We may collect the following types of information:</p>
+            <ul>
+              <li><strong>Personal Information:</strong> Name, email address, phone number, and payment details when you donate or sign up as a volunteer.</li>
+              <li><strong>Non-Personal Information:</strong> Browser type, IP address, and website usage data collected through cookies and analytics tools.</li>
+              <li><strong>Voluntary Information:</strong> Information you provide in forms, surveys, or communications with us.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- How We Use Your Information -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>3. How We Use Your Information</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>We use your information to:</p>
+            <ul>
+              <li>Process donations and send confirmation emails.</li>
+              <li>Communicate with you about our programs, events, and updates (if you’ve opted in).</li>
+              <li>Improve our website and services through analytics.</li>
+              <li>Comply with legal obligations and protect our rights.</li>
+            </ul>
+            <p>We will never sell or rent your personal information to third parties for marketing purposes.</p>
+          </div>
+        </div>
+
+        <!-- Sharing Your Information -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>4. Sharing Your Information</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>We may share your information with:</p>
+            <ul>
+              <li><strong>Service Providers:</strong> Third-party vendors who assist with payment processing, email communications, or website analytics (e.g., payment gateways).</li>
+              <li><strong>Legal Authorities:</strong> If required by law or to protect the safety of our organization and users.</li>
+            </ul>
+            <p>All third parties we work with are required to protect your data and use it only for the purposes we specify.</p>
+          </div>
+        </div>
+
+        <!-- Your Rights -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>5. Your Rights</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>You have the following rights regarding your personal information:</p>
+            <ul>
+              <li><strong>Access:</strong> Request a copy of the data we hold about you.</li>
+              <li><strong>Correction:</strong> Ask us to correct inaccurate or incomplete information.</li>
+              <li><strong>Deletion:</strong> Request that we delete your data, subject to legal obligations.</li>
+              <li><strong>Opt-Out:</strong> Unsubscribe from our communications at any time by clicking the "unsubscribe" link in emails.</li>
+            </ul>
+            <p>To exercise these rights, please contact us at <a href="/cdn-cgi/l/email-protection#5c2c2e352a3d3f251c3f332b3d3a2e353f3d72332e3b"><span class="__cf_email__" data-cfemail="205052495641435960434f574146524943410e4f5247">[email&#160;protected]</span></a>.</p>
+          </div>
+        </div>
+
+        <!-- Security Measures -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>6. Security Measures</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>
+              We take reasonable steps to protect your information from unauthorized access, loss, or misuse. This includes using secure servers, encryption for payment processing, and limiting access to your data within our organization.
+            </p>
+            <p>
+              However, no online system is completely secure. We encourage you to protect your personal information by keeping your account details confidential.
+            </p>
+          </div>
+        </div>
+
+        <!-- Cookies and Tracking -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>7. Cookies and Tracking</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>
+              We use cookies to enhance your experience on our website. Cookies are small text files stored on your device that help us understand how you use our site.
+            </p>
+            <p>We use the following types of cookies:</p>
+            <ul>
+              <li><strong>Essential Cookies:</strong> Necessary for the website to function (e.g., remembering your cookie preferences).</li>
+              <li><strong>Analytics Cookies:</strong> Help us analyze website traffic and improve our services.</li>
+            </ul>
+            <p>
+              You can manage cookie preferences through your browser settings. Note that disabling cookies may affect your experience on our website.
+            </p>
+          </div>
+        </div>
+
+        <!-- Changes to This Policy -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>8. Changes to This Policy</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>
+              We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of significant updates by posting the revised policy on our website with an updated effective date.
+            </p>
+            <p>
+              This policy was last updated on April 30, 2025.
+            </p>
+          </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <h3>9. Contact Information</h3>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+           
+            <p>
+              <strong>Address:</strong> Center for One Welfare Africa, Akosombo, Ghana
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+      
+      <a href="mailto:info@cowafrica.org">Contact Us</a>
+      <a href="../support/support.html"> Donate</a>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@cowafrica.org">Contact Us</a>
+      </div>
+    </div>
+    <p>© 2025 COWAfrica. All rights reserved.</p>
+  </footer>
+
+  
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="../script.js"></script>
+  <script>
+    // Accordion Functionality
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const isOpen = content.style.display === 'block';
+
+        // Close all other accordion items
+        document.querySelectorAll('.accordion-content').forEach(item => {
+          item.style.display = 'none';
+        });
+        document.querySelectorAll('.accordion-header').forEach(h => {
+          h.classList.remove('active');
+        });
+
+        // Toggle the clicked accordion item
+        if (!isOpen) {
+          content.style.display = 'block';
+          header.classList.add('active');
+        }
+      });
+    });
+
+    // Back to Top Button Visibility
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('#back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+  </script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'938623829f43457e',t:'MTc0NjAwNjY2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

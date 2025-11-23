@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Country Ambassadors & Representatives | COWAfrica</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <style>
+    /* CSS for Country Ambassadors Page */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .intro h2 {
+      font-size: 2.5rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .intro p {
+      font-size: 1.1rem;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2rem;
+      color: #00796b;
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .team-member {
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      background: linear-gradient(45deg, #f9f9f9, #e0f2e9);
+    }
+    .team-image {
+      max-width: 200px;
+      max-height: 200px;
+      border-radius: 20px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border: 2px solid #e0f2e9;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .team-image:hover {
+      transform: scale(1.05);
+    }
+    .team-member h3 {
+      font-size: 1.5rem;
+      color: #00796b;
+      margin-bottom: 5px;
+    }
+    .team-title {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .team-member p {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .join-us {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(45deg, #e0f2e9, #ffffff);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .join-us h2 {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .join-us p {
+      font-size: 1rem;
+      color: #333;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .join-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .join-btn:hover {
+      transform: scale(1.05);
+    }
+    .apply-btn {
+      background-color: #00796b;
+      color: white;
+    }
+    .apply-btn:hover {
+      background-color: #005f5b;
+    }
+    .support-btn {
+      background-color: #e0f2e9;
+      color: #00796b;
+      border: 1px solid #00796b;
+    }
+    .support-btn:hover {
+      background-color: #d0e2d9;
+    }
+    .join-btn:active {
+      transform: scale(0.98);
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+    .back-to-top:hover {
+      background-color: #005f5b;
+    }
+    @media (max-width: 768px) {
+      .intro h2 {
+        font-size: 2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .team-member h3 {
+        font-size: 1.3rem;
+      }
+      .team-image {
+        max-width: 150px;
+        max-height: 150px;
+      }
+      .team-member {
+        padding: 20px;
+      }
+      .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+      <div class="tagline">
+        <h1>Center for One Welfare - Africa</h1>
+        <p>UNITING FOR A HEALTHIER WORLD</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="../support/support.html" class="top-link">Donate</a>
+      <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="main-navbar">
+    <nav>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../about/who-we-are.html">Who We Are</a></li>
+            <li><a href="../about/our-team.html">Our Team</a></li>
+            <li><a href="../about/where-we-work.html">Where We Are</a></li>
+            <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+            <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+            <li><a href="about/partner.html">Our Partners</a></li>
+
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+          </ul>
+        </li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../training/training.html">Training</a></li>
+        <li class="dropdown">
+          <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../events/whats-new.html">What's New</a></li>
+            <li><a href="../events/past-events.html">Past Events & Works</a></li>
+            <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="../getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+            <li>
+              <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+            <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+            <li><a href="../media/videos.html">Videos</a></li>
+          </ul>
+        </li>
+        <li><a href="../support/support.html">Support Us</a></li>
+      </ul>
+      <!-- Mega Menu Container -->
+      <div class="mega-menu">
+        <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+        <div class="mega-menu-content"></div>
+    </div>
+    </nav>
+
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about/about.html">About Us</a></li>
+      <li><span aria-current="page">Country Ambassadors & Representatives</span></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <section class="intro">
+      <h2 class="section-title">Country Ambassadors & Representatives</h2>
+      <p>
+        Our Country Ambassadors and Representatives play a vital role in advancing COWAfrica’s mission across Africa. 
+        They advocate for the One Health approach, foster local partnerships, and engage communities to promote human, 
+        animal, and environmental welfare.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Our Ambassadors</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="../images/team/Ngadi.jpg" alt="Ngadie Koroma" class="team-image">
+          <h3>Ngadie Koroma</h3>
+          <p class="team-title">Country Ambassador - Sierra Leone</p>
+          <p>A Veterinarian and an Animal Science specialist, with varied years of theoretical and hands-on experience, who 
+            is passionate about teaching and promoting the application of scientific principles to enhance animal productivity, 
+            health, and welfare.
+            I believe in a collaborative approach to animal health, as it is linked to human health, ensuring that pet owners and livestock farmers are well-informed and actively involved in their animals' health decisions. I am steadfast in staying up-to-date with the latest advancements in animal health through continuous learning and professional development.   My passion lies in fostering the well-being of animals and building strong relationships with
+             their owners.</p>
+        </div>
+        <div class="team-member">
+          <img src="../images/team/ROSALINE.jpg" alt="Ambassador Placeholder" class="team-image">
+          <h3>ROSALINE VIRGINIA BUNDEH  </h3>
+          <p class="team-title">Country  Representative - Sierra Leone</p>
+          <p>A protean Public Health practitioner ardent about applying in-depth knowledge and skills in preventing and combating diseases and disasters;- empowering the community in healthy behaviors, fighting for young people, being the voice for women and girls, combating poverty, and improving the quality of life of members of society.   As an active writer with high proficiency in Epidemiological Methods and Biostatistics, I want to use research to advance the health systems, as I am drawn to strategic healthcare
+             planning to deliver quality care for all - these have been my incentives to be an active member of society.</p>
+        </div>
+        <div class="team-member">
+          <img src="../images/team/ambassador2.jpg" alt="Ambassador Placeholder" class="team-image">
+          <h3>Isaac Wnizumah Fritaa</h3>
+          <p class="team-title">Country Ambassador</p>
+          <p></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="join-us">
+      <h2 class="section-title">Become a Country Ambassador</h2>
+      <p>
+        Are you passionate about the One Health approach? Join us as a Country Ambassador or Representative to make a difference in your community. Together, we can create a healthier Africa.
+      </p>
+      <div class="cta-buttons">
+        <a href="../getinvolved/ambassadors.html" class="join-btn apply-btn">Apply Now</a>
+        <a href="../support/support.html" class="join-btn support-btn">Support Our Work</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@cowafrica.org">Contact Us</a>
+      </div>
+    </div>
+    <p>© 2025 COWAfrica. All rights reserved.</p>
+  </footer>
+
+  <!-- Cookie Notice -->
+  <div class="cookie-notice" id="cookie-notice">
+    <p>We use cookies to enhance your experience. <a href="../privacy/privacy.html">Learn more</a></p>
+    <button id="cookie-accept">Accept</button>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    // Back to Top Button Visibility
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('#back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

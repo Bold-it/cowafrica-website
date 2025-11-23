@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vital Documents | COWAfrica</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <style>
+    /* CSS for Vital Documents Page */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .intro h2 {
+      font-size: 2.5rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .intro p {
+      font-size: 1.1rem;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .search-filter-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .search-bar {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px 40px 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .search-bar input:focus {
+      border-color: #00796b;
+      box-shadow: 0 0 5px rgba(0,121,107,0.2);
+      outline: none;
+    }
+    .search-bar i {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #00796b;
+    }
+    .filter-group {
+      min-width: 200px;
+    }
+    .filter-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .filter-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .filter-group select:focus {
+      border-color: #00796b;
+      outline: none;
+    }
+    .documents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .document-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .document-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+    .document-card h3 {
+      font-size: 1.3rem;
+      color: #00796b;
+      margin-bottom: 10px;
+    }
+    .document-meta {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .document-meta span {
+      margin-right: 15px;
+    }
+    .document-meta i {
+      margin-right: 5px;
+    }
+    .document-card p {
+      font-size: 0.9rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+    .document-card a {
+      display: inline-flex;
+      align-items: center;
+      background-color: #00796b;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background-color 0.3s ease;
+    }
+    .document-card a:hover {
+      background-color: #005f5b;
+    }
+    .document-card a i {
+      margin-left: 8px;
+    }
+    .cta-section {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #e0f2e9;
+      border-radius: 8px;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+      color: #00796b;
+      margin-bottom: 15px;
+    }
+    .cta-section p {
+      font-size: 1rem;
+      color: #333;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+    .cta-section a {
+      display: inline-block;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .cta-section a:hover {
+      background-color: #005f5b;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+    .back-to-top:hover {
+      background-color: #005f5b;
+    }
+    @media (max-width: 768px) {
+      .documents-grid {
+        grid-template-columns: 1fr;
+      }
+      .search-filter-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .search-bar,
+      .filter-group {
+        width: 100%;
+        min-width: unset;
+      }
+      .intro h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+      <div class="tagline">
+        <h1>Center for One Welfare - Africa</h1>
+        <p>UNITING FOR A HEALTHIER WORLD</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="../support/support.html" class="top-link">Donate</a>
+      <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="main-navbar">
+    <nav>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../about/who-we-are.html">Who We Are</a></li>
+            <li><a href="../about/our-team.html">Our Team</a></li>
+            <li><a href="../about/where-we-work.html">Where We Are</a></li>
+            <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+            <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+            <li><a href="../about/partner.html">Our Partners</a></li>
+
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+          </ul>
+        </li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../training/training.html">Training</a></li>
+        <li class="dropdown">
+          <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../events/whats-new.html">What's New</a></li>
+            <li><a href="../events/past-events.html">Past Events & Works</a></li>
+            <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="../getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+            <li>
+              <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+            <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+            <li><a href="../media/videos.html">Videos</a></li>
+          </ul>
+        </li>
+        <li><a href="../support/support.html">Support Us</a></li>
+      </ul>
+      <!-- Mega Menu Container -->
+      <div class="mega-menu">
+        <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+        <div class="mega-menu-content"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../media/media.html">Media/Resources</a></li>
+      <li><span aria-current="page">Vital Documents</span></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="intro">
+      <h2>Vital Documents</h2>
+      <p>
+        Access a collection of COWAfrica’s essential documents, including annual reports, policy briefs, research papers, and more. Use the search and filter options below to find the resources you need.
+      </p>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="search-filter-container">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search documents..." onkeyup="filterDocuments()">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="filter-group">
+        <label for="yearFilter">Filter by Year</label>
+        <select id="yearFilter" onchange="filterDocuments()">
+          <option value="">All Years</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="categoryFilter">Filter by Category</label>
+        <select id="categoryFilter" onchange="filterDocuments()">
+          <option value="">All Categories</option>
+          <option value="annual-report">Annual Reports</option>
+          <option value="policy-brief">Policy Briefs</option>
+          <option value="research-paper">Research Papers</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Documents Grid -->
+    <section class="documents-grid" id="documentsGrid">
+    
+
+      <!-- Placeholder Document 1 -->
+      <div class="document-card" data-year="2024" data-category="policy-brief">
+        <h3>State of the World's Animal Health_WOAH_ 2025_EN</h3>
+        <div class="document-meta">
+          <span><i class="fas fa-calendar-alt"></i> 2024</span>
+          <span><i class="fas fa-folder"></i> Policy Briefs</span>
+        </div>
+        <p>
+State of the World's Animal Health_WOAH_ 2025_EN        </p>
+        <a href="../documents/State-of-the-Worlds-Animal-Health-digital-en.pdf" download>Download <i class="fas fa-download"></i></a>
+      </div>
+
+      
+      <!-- Placeholder Document 4 -->
+      <div class="document-card" data-year="2024" data-category="other">
+        <h3>One Health Toolkit</h3>
+        <div class="document-meta">
+          <span><i class="fas fa-calendar-alt"></i> 2024</span>
+          <span><i class="fas fa-folder"></i> Other</span>
+        </div>
+        <p>
+          A practical guide for communities to implement One Health practices locally.
+        </p>
+        <a href="../documents/2024-toolkit.pdf" download>Download <i class="fas fa-download"></i></a>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+      <h2>Can’t Find What You’re Looking For?</h2>
+      <p>
+        If you’re unable to find a specific document, please reach out to us, and we’ll assist you.
+      </p>
+      <a href="/cdn-cgi/l/email-protection#bad3d4dcd5fad9d5cddbdcc8d3d9db94d5c8dd85c9cfd8d0dfd9ce87fed5d9cfd7dfd4ce9ae8dfcbcfdfc9ce">Contact Us</a>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@cowafrica.org">Contact Us</a>
+      </div>
+    </div>
+    <p>© 2025 COWAfrica. All rights reserved.</p>
+  </footer>
+
+  
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="../script.js"></script>
+  <script>
+    // Filter Documents Functionality
+    function filterDocuments() {
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const yearFilter = document.getElementById('yearFilter').value;
+      const categoryFilter = document.getElementById('categoryFilter').value;
+      const documentCards = document.querySelectorAll('.document-card');
+
+      documentCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const year = card.getAttribute('data-year');
+        const category = card.getAttribute('data-category');
+
+        const matchesSearch = title.includes(searchInput);
+        const matchesYear = yearFilter === '' || year === yearFilter;
+        const matchesCategory = categoryFilter === '' || category === categoryFilter;
+
+        if (matchesSearch && matchesYear && matchesCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Back to Top Button Visibility
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('#back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+  </script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'938623829f43457e',t:'MTc0NjAwNjY2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

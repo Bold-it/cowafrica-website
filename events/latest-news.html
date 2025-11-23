@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest News Around the World | COWAfrica</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <style>
+        /* Custom CSS for Latest News Page */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .news-banner {
+            background: linear-gradient(45deg, #00796b, #e0f2e9);
+            padding: 60px 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .news-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../images/news-banner.jpg') no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        .news-banner h1 {
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .news-banner p {
+            font-size: 1.1rem;
+            color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .intro h2 {
+            font-size: 2.5rem;
+            color: #00796b;
+            margin-bottom: 15px;
+        }
+        .intro p {
+            font-size: 1.1rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        .form-container h3 {
+            font-size: 1.8rem;
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.95rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .form-submit {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-submit:hover {
+            background-color: #005f5b;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .event-item {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .event-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .event-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .event-details {
+            padding: 20px;
+        }
+        .event-details h3 {
+            font-size: 1.5rem;
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+        .event-date {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .event-date .news-category {
+            font-style: italic;
+        }
+        .event-details p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .card-link {
+            color: #00796b;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .card-link:hover {
+            color: #005f5b;
+            text-decoration: underline;
+        }
+        .pagination {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .pagination .page-nav {
+            display: inline-flex;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .pagination a {
+            padding: 10px 15px;
+            border-right: 1px solid #ddd;
+            color: #333;
+            text-decoration: none;
+        }
+        .pagination a.active {
+            background-color: #00796b;
+            color: white;
+        }
+        .pagination a.disabled {
+            color: #999;
+            pointer-events: none;
+        }
+        .pagination a:not(.disabled):hover {
+            background-color: #e0e0e0;
+        }
+        .newsletter-section, .cta-section {
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .newsletter-section h2, .cta-section h2 {
+            font-size: 2rem;
+            color: #00796b;
+            margin-bottom: 15px;
+        }
+        .newsletter-section p, .cta-section p {
+            font-size: 1rem;
+            color: #333;
+            max-width: 700px;
+            margin: 15px auto;
+        }
+        .newsletter-section .email-input {
+            display: flex;
+            max-width: 500px;
+            margin: 25px auto;
+        }
+        .newsletter-section input[type="email"] {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            border-right: none;
+            font-size: 0.95rem;
+        }
+        .newsletter-section .form-submit {
+            border-radius: 0 4px 4px 0;
+            margin: 0;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .join-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1rem;
+            background-color: #00796b;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        .join-btn:hover {
+            background-color: #005f5b;
+        }
+        .join-btn:active {
+            transform: scale(0.98);
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00796b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-top:hover {
+            background-color: #005f5b;
+        }
+        @media (max-width: 768px) {
+            .news-banner h1 {
+                font-size: 2.2rem;
+            }
+            .news-banner p {
+                font-size: 1rem;
+            }
+            .intro h2 {
+                font-size: 2rem;
+            }
+            .form-container {
+                padding: 15px;
+            }
+            .form-container h3 {
+                font-size: 1.5rem;
+            }
+            .news-grid {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            }
+            .event-details h3 {
+                font-size: 1.3rem;
+            }
+            .event-image img {
+                height: 150px;
+            }
+            .newsletter-section h2, .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+            <div class="tagline">
+                <h1>Center for One Welfare- Africa</h1>
+                <p>UNITING FOR A HEALTHIER WORLD</p>
+            </div>
+        </div>
+        <div class="top-actions">
+            <a href="../support/support.html" class="top-link">Donate</a>
+            <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="main-navbar">
+        <nav>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+            <ul class="main-nav">
+                <li><a href="../index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../about/who-we-are.html">Who We Are</a></li>
+                        <li><a href="../about/our-team.html">Our Team</a></li>
+                        <li><a href="../about/where-we-work.html">Where We Are</a></li>
+                        <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+                        <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+                        <li><a href="../events/../about/partner.html">Our Partners</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+                    </ul>
+                </li>
+                <li><a href="../research/research.html">Research</a></li>
+                <li><a href="../training/training.html">Training</a></li>
+                <li class="dropdown">
+                    <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../events/whats-new.html">What's New</a></li>
+                        <li><a href="../events/past-events.html">Past Events & Works</a></li>
+                        <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="../getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+                            <button class="apply-btn">Apply Here</button>
+                        </li>
+                        <li>
+                            <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+                            <button class="apply-btn">Apply Here</button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+                        <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+                        <li><a href="../media/videos.html">Videos</a></li>
+                    </ul>
+                </li>
+                <li><a href="../support/support.html">Support Us</a></li>
+            </ul>
+            <!-- Mega Menu Container -->
+            <div class="mega-menu">
+                <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+                <div class="mega-menu-content"></div>
+            </div>
+            <!-- Mega Menu Container -->
+            <div class="mega-menu">
+                <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+                <div class="mega-menu-content"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../events/events.html">Events</a></li>
+            <li><span aria-current="page">Latest News Around the World</span></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- News Banner -->
+        <section class="news-banner">
+            <h1>Latest News Around the World</h1>
+            <p>
+                Stay updated with global developments in One Health, sustainability, and innovation that align with COWAfrica’s mission to unite for a healthier world.
+            </p>
+        </section>
+
+        <!-- Intro Section -->
+        <section class="intro">
+            <h2>Latest News Around the World</h2>
+            <p>
+                Stay informed about the most recent developments in One Health, animal welfare, human health, 
+                and environmental conservation from across the globe. Our curated news section highlights important 
+                updates that reflect the interconnected nature of global health challenges.
+            </p>
+        </section>
+
+        <!-- News Filter Section -->
+        <section>
+            <div class="form-container">
+                <h3>Filter News</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                    <div style="flex: 1; min-width: 200px;">
+                        <label for="category" class="form-label">Category</label>
+                        <select id="category" class="form-select">
+                            <option value="all">All Categories</option>
+                            <option value="human-health">Human Health</option>
+                            <option value="animal-welfare">Animal Welfare</option>
+                            <option value="environmental">Environmental Conservation</option>
+                            <option value="policy">Policy & Governance</option>
+                            <option value="research">Research & Innovation</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1; min-width: 200px;">
+                        <label for="region" class="form-label">Region</label>
+                        <select id="region" class="form-select">
+                            <option value="all">All Regions</option>
+                            <option value="east-africa">East Africa</option>
+                            <option value="west-africa">West Africa</option>
+                            <option value="north-africa">North Africa</option>
+                            <option value="southern-africa">Southern Africa</option>
+                            <option value="central-africa">Central Africa</option>
+                            <option value="global">Global</option>
+                        </select>
+                    </div>
+                    <div style="align-self: flex-end;">
+                        <button class="form-submit" style="margin-top: 0;" onclick="filterNews()">Apply Filters</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Items -->
+        <section>
+            <div class="news-grid">
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/others/news1.jpg" alt="AI in Agriculture">
+                    </div>
+                    <div class="event-details">
+                        <h3>In Nigeria, Tech Workers, Farmers Bring AI To The Fields</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i> March 27, 2025 | <span class="news-category">Research & Innovation</span></p>
+                        <p>
+                            Tech workers and farmers in Nigeria are leveraging AI to revolutionize agriculture, improving sustainability and productivity.
+                        </p>
+                        <a href="https://www.channelstv.com/2025/03/27/in-nigeria-tech-workers-farmers-bring-ai-to-the-fields/" target="_blank" class="card-link">Read More <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/others/news2.jpg" alt="Antibiotics Research">
+                    </div>
+                    <div class="event-details">
+                        <h3>A Breakthrough Moment: Researchers Discover New Class of Antibiotics</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i> March 25, 2025 | <span class="news-category">Human Health</span></p>
+                        <p>
+                            A groundbreaking discovery of a new class of antibiotics offers hope in the fight against antimicrobial resistance.
+                        </p>
+                        <a href="https://phys.org/news/2025-03-breakthrough-moment-class-antibiotics.html" target="_blank" class="card-link">Read More <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/others/rabies.png" alt="Mission Rabies">
+                    </div>
+                    <div class="event-details">
+                        <h3>Mission Rabies: Global Efforts to Eliminate Rabies</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i> March 28, 2025 | <span class="news-category">Animal Welfare</span></p>
+                        <p>
+                            Mission Rabies is leading global initiatives to eliminate rabies through mass vaccination campaigns, education, and community engagement, protecting both animals and humans.
+                        </p>
+                        <a href="https://missionrabies.com/" target="_blank" class="card-link">Read Full Story <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/others/news.jpg" alt="Environmental Conservation">
+                    </div>
+                    <div class="event-details">
+                        <h3>Meat processed by burning tyres can cause cancer – Research</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i>  May 7, 2025 | <span class="news-category">Human Health</span></p>
+                        <p>
+                            A joint study by the Faculty of Public Health Education, Akenten Appiah Menka University of Skills 
+                            Training and Entrepreneurial Development (AAMUSTED), Mampong Campus, and the Kwame Nkrumah University of Science 
+                            and Technology, Kumasi has revealed that meat singed (burnt) with vehicle tyres 
+                            contains harmful substances that can cause cancer.By 3news.com
+                        </p>
+                        <a href="https://3news.com/news/meat-processed-by-burning-tyres-can-cause-cancer-research/" class="card-link">Read Full Story <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/malaria.jpg" alt="Public Health Initiative">
+                    </div>
+                    <div class="event-details">
+                        <h3>Ghana records 45% reduction in malaria among children under five</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i> 17 May , 2025 | <span class="news-category">Human Health</span></p>
+                        <p>
+                            Dr. Kezia Malm, Programme Manager at the NMEP, told the Ghana News Agency that the significant decline was largely 
+                            due to the integration of malaria vaccines into the country’s routine immunisation programme,
+                             an intervention that has saved the lives of many children.
+                        </p>
+                        <a href="https://citinewsroom.com/2025/05/ghana-records-45-reduction-in-malaria-among-children-under-five/" class="card-link">Read Full Story <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/others/preg.png" alt="Research Breakthrough">
+                    </div>
+                    <div class="event-details">
+                        <h3>Contact with cats, doubles toxoplasmosis risk in pregnant women – Study</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i> May 26, 2025 | <span class="news-category">Research & Innovation</span></p>
+                        <p>
+                            The research, led by Dr Bhavana Singh from the Department of Clinical Microbiology, School of Medicine and Dentistry at the Kwame Nkrumah University of Science and Technology (KNUST) found that contact with cats and lower levels of education were major risk factors for Toxoplasma gondii infection.
+                        <a href="https://www.ghanabusinessnews.com/2025/05/26/contact-with-cats-doubles-toxoplasmosis-risk-in-pregnant-women-study/" class="card-link">Read Full Story <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/others/rab.webp" alt="Mission Rabies">
+                    </div>
+                    <div class="event-details">
+                        <h3>British woman dies from rabies after puppy scratch</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i> 18 June 2025| <span class="news-category">Human Health</span></p>
+                        <p>
+A British woman has died from rabies after she was "scratched" by a puppy in Morocco, her family said.
+
+Yvonne Ford, 59, from Barnsley, South Yorkshire, had light contact with the stray dog while on holiday in February in the North African country.
+
+In a social media post, reported by the Press Association, Mrs Ford's family said she developed a headache two weeks ago and later couldn't "walk, talk, sleep, swallow".
+
+The UK Health Security Agency (UKHSA) said there was no risk to the wider public due to no documented evidence of rabies passing between people.                        </p>
+                        <a href="https://www.bbc.com/news/articles/c98wyllp170o" target="_blank" class="card-link">Read Full Story <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/others/spider.avif" alt="Policy Development">
+                    </div>
+                    <div class="event-details">
+                        <h3>Lyme disease: How to protect yourself and what to do if you’re bitten by a tick</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i>  July 10, 2025  | <span class="news-category">Human Health</span></p>
+                        <p>
+                            In Quebec’s Laurentians region, more than 30 cases of Lyme disease have already been detected – an increase compared to previous years, according to Noovo Info.
+
+The same pattern has also been recorded in other regions of Quebec, with the province currently counting 835 cases of Lyme disease.
+
+Dr. Aimé Kazadi, a specialist in public health and preventive medicine with the Laurentians Public Health Department, points out that there are a dozen species of ticks in Quebec.
+
+
+He adds that only the black-legged tick can transmit Lyme disease.
+
+“Not all black-legged ticks are infected when they bite people,” he explains. “Out of 100 tick bites, only one to three per cent will develop symptoms.”
+
+To avoid being bitten by a tick, Kazadi recommends wearing long clothing and, when possible, tucking your pants into your socks.
+
+He also advises people to avoid walking in tall grass.
+                        </p>
+                        <a href="https://www.ctvnews.ca/montreal/article/lyme-disease-how-to-protect-yourself-and-what-to-do-if-youre-bitten-by-a-tick/" class="card-link">Read Full Story <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="../images/others/mpox.webp" alt="Community Initiative">
+                    </div>
+
+             <div class="event-details">
+                        <h3>Mpox in Sierra Leone: Inside the response to a fast-moving outbreak</h3>
+                        <p class="event-date"><i class="fa fa-calendar"></i>  01 July 2025  | <span class="news-category">Human Health</span></p>
+                        <p>
+                            Sierra Leone is in the grip of its worst mpox outbreak to date. Since the first case was confirmed in January,
+                             BY July 1 more than 4,489 infections and 29 deaths hd been recorded across all districts.
+
+                        The national case fatality rate
+                        remains low, at 0.6%, but the scale and speed of transmission are straining the health system and raising regional concerns.
+                        </p>
+                        <a href="https://www.nature.com/articles/d44148-025-00200-7?utm_campaign=engagement&utm_content=organic&utm_medium=social&utm_source=twitter" class="card-link">Read Full Story <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src=".." alt="Community Initiative">
+                    </div>
+                
+            </div>
+        </section>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <div class="page-nav">
+                <a href="#" class="disabled"><i class="fa fa-angle-left"></i></a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#"><i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter-section">
+            <h2>Stay Updated with Our Newsletter</h2>
+            <p>
+                Subscribe to our newsletter to receive the latest news and updates in One Health, animal welfare, 
+                and environmental conservation from around the world, delivered straight to your inbox.
+            </p>
+            <div class="email-input">
+                <input type="email" placeholder="Your email address">
+                <button class="form-submit">Subscribe</button>
+            </div>
+        </section>
+
+        <!-- Get Involved Section -->
+        <section class="cta-section">
+            <h2>Get Involved with COWAfrica</h2>
+            <p>
+                Join us in advancing the One Health approach across Africa. Your support can make a lasting impact on human health, animal welfare, and environmental sustainability. Have questions? Reach out to us!
+            </p>
+            <div class="cta-buttons">
+                <a href="../support/support.html" class="join-btn">Support Us</a>
+                <a href="../getinvolved/getinvolved.html" class="join-btn">Get Involved</a>
+                <a href="/cdn-cgi/l/email-protection#ed84838b82ad8e829a8c8b9f848e8cc3829f8ad29e988f87888e99d0ae8283998c8e99cdb89ecda4839c98849f94" class="join-btn">Contact Us</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="socials">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="../privacy/privacy.html">Privacy Policy</a>
+                <a href="mailto:info@cowafrica.org">Contact Us</a>
+            </div>
+        </div>
+        <p>© 2025 COWAfrica. All rights reserved.</p>
+    </footer>
+
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="../script.js"></script>
+    <script>
+        // Filter News Functionality
+        function filterNews() {
+            const categoryFilter = document.querySelector('#category').value;
+            const regionFilter = document.querySelector('#region').value;
+            const newsItems = document.querySelectorAll('.event-item');
+
+            newsItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                const itemRegion = item.getAttribute('data-region');
+
+                const matchesCategory = categoryFilter === 'all' || itemCategory === categoryFilter;
+                const matchesRegion = regionFilter === 'all' || itemRegion === regionFilter;
+
+                if (matchesCategory && matchesRegion) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Back to Top Button Visibility
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('#back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+    </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93a1b4c199ff676b',t:'MTc0NjI5NTczMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93a6c2438e7dc016',t:'MTc0NjM0ODcxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

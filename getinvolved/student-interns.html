@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Interns & Ambassadors Application - COW-Afri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="/images/cowa-logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-field {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-field label {
+            display: block;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            color: #333;
+            background-color: #fff;
+            transition: border-color 0.3s;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .form-field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .checkbox-group input {
+            margin-right: 8px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            max-width: 500px;
+            width: 90%;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .close-btn:hover {
+            background-color: #5a6268;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .form-field {
+                min-width: 100%;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../admin/firebase-config.js"></script>
+    <script src="../admin/form-submit.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            const submitBtn = form.querySelector('.submit-btn');
+            const modal = document.querySelector('.modal');
+            const modalTitle = document.querySelector('#modal-title');
+            const modalMessage = document.querySelector('#modal-message');
+            const closeBtn = document.querySelector('.close-btn');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                const formData = new FormData(form);
+                const action = form.getAttribute('action');
+
+                try {
+                    const response = await fetch(action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        modalTitle.textContent = 'Application Submitted!';
+                        modalMessage.textContent = 'Thank you for your application. We will review it and contact you soon.';
+                        modal.classList.add('show');
+                        form.reset();
+                    } else {
+                        modalTitle.textContent = 'Submission Failed';
+                        modalMessage.textContent = 'There was an issue submitting your application. Please try again later.';
+                        modal.classList.add('show');
+                    }
+                } catch (error) {
+                    modalTitle.textContent = 'Submission Error';
+                    modalMessage.textContent = 'An error occurred. Please check your connection and try again.';
+                    modal.classList.add('show');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Application';
+                }
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+
+            modal.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body id="top">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="../images/logo7.png" alt="COW-Afri Logo" class="logo">
+            <div class="tagline">
+                <h1>Center for One Welfare-Africa</h1>
+                <p>UNITING FOR A HEALTHIER WORLD</p>
+            </div>
+        </div>
+        <div class="top-actions">
+            <a href="../support/support.html" class="top-link">Donate</a>
+            <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="main-navbar">
+        <nav>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+            <ul class="main-nav">
+                <li><a href="../index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../about/who-we-are.html">Who We Are</a></li>
+                        <li><a href="../about/our-team.html">Our Team</a></li>
+                        <li><a href="../about/where-we-work.html">Where We Are</a></li>
+                        <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+                        <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+                        <li><a href="../about/partner.html">Our Partners</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../whatwedo/what-we-do.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation
+                                Advocacy</a></li>
+                    </ul>
+                </li>
+                <li><a href="../research/research.html">Research</a></li>
+                <li><a href="../training/training.html">Training</a></li>
+                <li class="dropdown">
+                    <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../events/whats-new.html">What's New</a></li>
+                        <li><a href="../events/past-events.html">Past Events & Works</a></li>
+                        <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+                            <a href="../getinvolved/student-interns.html"><button class="apply-btn">Apply
+                                    Here</button></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false"
+                        aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+                        <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+                        <li><a href="../media/videos.html">Videos</a></li>
+                    </ul>
+                </li>
+                <li><a href="../support/support.html">Support Us</a></li>
+            </ul>
+        </nav>
+        <div class="mega-menu">
+            <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+            <div class="mega-menu-content"></div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../getinvolved/getinvolved.html">Join Us</a></li>
+            <li><span>Student Interns & Ambassadors</span></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="intro">
+            <h2 class="section-title">Volunteers & Interns </h2>
+            <p>Join our team of passionate young professionals making a difference across Africa</p>
+
+        </section>
+        <section class="program-info">
+            <h3 class="section-title">Student Internship & Volunteerism Program</h3>
+            <p>
+                Our Internship and Volunteerism Program offers university students and recent graduates a unique
+                opportunity to gain practical experience in promoting One Health principles across Africa. Interns and
+                ambassadors work on projects related to human health, animal welfare, and environmental conservation
+                while developing valuable professional skills and expanding their networks.
+
+                </div>
+        </section>
+
+
+        <section class="application-process">
+            <h2 class="section-title">Application Process</h2>
+            <ul>
+                <li>Complete the application form below with all required information</li>
+                <li>Attach your CV/resume and a brief motivation letter</li>
+                <li>Submit your application</li>
+                <li>If shortlisted, you will be contacted for an online interview</li>
+                <li>Successful candidates will receive an offer letter with further instructions</li>
+            </ul>
+        </section>
+
+
+        <section class="application-form">
+            <h2 class="section-title">Application Form</h2>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <h3>Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="phone">Phone Number</label>
+                            <div style="display:flex; gap:8px; align-items:center;">
+                                <select id="country_code" name="country_code" style="max-width:140px;">
+                                    <option value="+1">+1 (US)</option>
+                                    <option value="+44">+44 (UK)</option>
+                                    <option value="+233">+233 (Ghana)</option>
+                                    <option value="+254">+254 (Kenya)</option>
+                                    <option value="+234" selected>+234 (Nigeria)</option>
+                                    <option value="+27">+27 (South Africa)</option>
+                                    <option value="+99">Other</option>
+                                </select>
+                                <input type="tel" id="phone" name="phone_local" placeholder="e.g., 712345678">
+                            </div>
+                            <!-- hidden field that will contain combined country code + local number -->
+                            <input type="hidden" id="phone_full" name="phone">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="country">Country of Residence</label>
+                                <input type="text" id="country" name="country" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city">
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="nationality">Nationality</label>
+                            <input type="text" id="nationality" name="nationality" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Education and Experience</h3>
+                        <div class="form-field">
+                            <label for="university">University/Institution</label>
+                            <input type="text" id="university" name="university">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="degree">Degree Program / Qualification</label>
+                                <input type="text" id="degree" name="degree">
+                            </div>
+                            <div class="form-field">
+                                <label for="major">Field of Study/Major</label>
+                                <input type="text" id="major" name="major">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="year">Year of Study / Years of work</label>
+                                <select id="year" name="year">
+                                    <option value="">Select year</option>
+                                    <option value="1st Year">1st Year</option>
+                                    <option value="2nd Year">2nd Year</option>
+                                    <option value="3rd Year">3rd Year</option>
+                                    <option value="4th Year">4th Year</option>
+                                    <option value="5th Year">5th Year</option>
+                                    <option value="Graduating 2025">Graduating 2025</option>
+                                    <option value="Graduated 2024">Graduated 2024</option>
+                                    <option value="Graduated 2023">Graduated 2023</option>
+                                    <option value="Graduated 2022">Graduated 2022</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="program">Program Applying For</label>
+                                <select id="program" name="program">
+                                    <option value="">Select program</option>
+                                    <option value="Internship">Internship</option>
+                                    <option value="Volunteer">Volunteer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="languages">Languages Spoken (include proficiency level)</label>
+                            <textarea id="languages" name="languages"
+                                placeholder="E.g., English (Fluent), French (Intermediate), Swahili (Beginner)"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Areas of Interest</h3>
+                        <p>Please select your areas of interest (select all that apply):</p>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="interest[]" value="Human Health & Welfare"> Human Health
+                                & Welfare</label>
+                            <label><input type="checkbox" name="interest[]" value="Animal Health & Welfare"> Animal
+                                Health & Welfare</label>
+                            <label><input type="checkbox" name="interest[]" value="Environmental Conservation">
+                                Environmental Conservation</label>
+                            <label><input type="checkbox" name="interest[]" value="Research & Data Analysis"> Research &
+                                Data Analysis</label>
+                            <label><input type="checkbox" name="interest[]" value="Communications & Social Media">
+                                Communications & Social Media</label>
+                            <label><input type="checkbox" name="interest[]" value="Community Outreach"> Community
+                                Outreach</label>
+                            <label><input type="checkbox" name="interest[]" value="Event Planning & Management"> Event
+                                Planning & Management</label>
+                            <label><input type="checkbox" name="interest[]" value="Education & Training"> Education &
+                                Training</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Qualifications and Motivation</h3>
+                        <div class="form-field">
+                            <label for="skills">Relevant Skills and Experience</label>
+                            <textarea id="skills" name="skills"></textarea>
+                        </div>
+                        <div class="form-field">
+                            <label for="motivation">Motivation Statement</label>
+                            <textarea id="motivation" name="motivation"></textarea>
+                        </div>
+                        <div class="form-field">
+                            <label for="projects">Proposed Projects or Initiatives</label>
+                            <textarea id="projects" name="projects"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Supporting Documents</h3>
+                        <p><strong>Note:</strong> Please email your CV/Resume and Cover Letter (PDF format) to <a
+                                href="mailto:info@cowafrica.org">info@cowafrica.org</a> after submitting this form, as
+                            file uploads are not supported in this form.</p>
+                        <div class="form-field">
+                            <label for="cv">CV/Resume (PDF format)</label>
+                            <input type="file" id="cv" name="cv" accept=".pdf" disabled>
+                        </div>
+                        <div class="form-field">
+                            <label for="cover_letter">Cover Letter (PDF format)</label>
+                            <input type="file" id="cover_letter" name="cover_letter" accept=".pdf" disabled>
+                        </div>
+                        <div class="form-field">
+                            <label for="additional_docs">Additional Supporting Documents (optional)</label>
+                            <input type="file" id="additional_docs" name="additional_docs" accept=".pdf" disabled>
+                        </div>
+                        <div class="form-field">
+                            <label for="comments">Additional Comments or Information</label>
+                            <textarea id="comments" name="comments"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><input type="checkbox" name="consent" required> I consent to COWAfrica storing and
+                            processing my personal data for the purpose of this application and future communications
+                            related to opportunities at the organization.</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </section>
+
+        <section class="faq">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is this a paid opportunity?</h3>
+                <p>Student internships and ambassadorships are primarily volunteer positions. However, selected
+                    candidates may be eligible for stipends for specific projects or expenses based on funding
+                    availability.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I apply if I'm not based in Africa?</h3>
+                <p>Yes, we accept applications from students worldwide, though preference may be given to those based in
+                    or with strong connections to African countries.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What is the application deadline?</h3>
+                <p>We review applications on a rolling basis. However, for seasonal internships, specific deadlines may
+                    apply. Check our website regularly for updates.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How will I be notified about my application status?</h3>
+                <p>All applicants will receive email notifications regarding their application status. If you haven't
+                    heard from us within four weeks of your application, please feel free to contact us at <a
+                        href="mailto:info@cowafrica.org">info@cowafrica.org</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <h2 id="modal-title">Application Submitted!</h2>
+            <p id="modal-message">Thank you for applying to COWAfrica's Student Internship & Ambassador Program. We will
+                review your application and contact you soon.</p>
+            <button class="close-btn" aria-label="Close modal">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="socials">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="../privacy/privacy.html">Privacy Policy</a>
+                <a href="/cdn-cgi/l/email-protection#92fbfcf4fdd2f1fde5f3f4e0fbf1f3bcfde0f5">Contact Us</a>
+            </div>
+        </div>
+        <p>© 2025 COW-Afri. All rights reserved.</p>
+    </footer>
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+</body>
+
+</html>

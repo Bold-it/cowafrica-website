@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Where We Work | COWAfrica</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+        /* Custom CSS for Where We Work Page */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: #00796b;
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .card-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+        .card-text {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .project-details {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .project-details li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .project-details li::before {
+            content: '•';
+            color: #00796b;
+            position: absolute;
+            left: 0;
+        }
+        .map-container {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        #africaMap {
+            height: 500px;
+            width: 100%;
+            border: 2px solid #e0f2e9;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        #map-fallback {
+            display: none;
+            text-align: center;
+            color: #333;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        #map-fallback p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        #map-fallback button {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        #map-fallback button:hover {
+            background-color: #005f5b;
+            transform: scale(1.05);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .stat-card h3 {
+            font-size: 2rem;
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+        .stat-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .badge {
+            background-color: #e0f2e9;
+            color: #00796b;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #00796b;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-top:hover {
+            background-color: #005f5b;
+        }
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            .card-img img {
+                height: 150px;
+            }
+            #africaMap {
+                height: 400px;
+            }
+            .stat-card h3 {
+                font-size: 1.8rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body id="top">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+            <div class="tagline">
+                <h1>Center for One Welfare - Africa</h1>
+                <p>UNITING FOR A HEALTHIER WORLD</p>
+            </div>
+        </div>
+        <div class="top-actions">
+            <a href="../support/support.html" class="top-link">Donate</a>
+            <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="main-navbar">
+        <nav>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+            <ul class="main-nav">
+                <li><a href="../index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../about/who-we-are.html">Who We Are</a></li>
+                        <li><a href="../about/our-team.html">Our Team</a></li>
+                        <li><a href="../about/where-we-work.html">Where We Are</a></li>
+                        <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+                        <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+                        <li><a href="about/partner.html">Our Partners</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../whatwedo/what-we-do.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+                        <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+                    </ul>
+                </li>
+                <li><a href="../research/research.html">Research</a></li>
+                <li><a href="../training/training.html">Training</a></li>
+                <li class="dropdown">
+                    <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../events/whats-new.html">What's New</a></li>
+                        <li><a href="../events/past-events.html">Past Events & Works</a></li>
+                        <li><a href="../events/latest-news.html">Latest News Around the World</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="../getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+                            <button class="apply-btn">Apply Here</button>
+                        </li>
+                        <li>
+                            <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+                            <button class="apply-btn">Apply Here</button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+                        <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+                        <li><a href="../media/videos.html">Videos</a></li>
+                    </ul>
+                </li>
+                <li><a href="../support/support.html">Support Us</a></li>
+            </ul>
+            <!-- Mega Menu Container -->
+            <div class="mega-menu">
+                <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+                <div class="mega-menu-content"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about/about.html">About Us</a></li>
+            <li><span aria-current="page">Where We Work</span></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Completed Key Projects Section -->
+        <section>
+            <h2 class="section-title">Key Projects</h2>
+            <div class="card-container">
+                <!-- Project 1 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../images/1h.jpeg" alt="Urban One Health Initiative">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Urban One Health Initiative</h3>
+                        <p class="card-text">
+                            Addressing human, animal, and environmental health challenges in major African cities through:
+                        </p>
+                        <ul class="project-details">
+                            <li>Slum upgrading programs</li>
+                            <li>Urban wildlife management</li>
+                            <li>Waste management systems</li>
+                            <li>Community health centers</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="card">
+                    <div class="card-img">
+                        <img src="../images/ww.jpeg" alt="Great Green Wall Initiative">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Great Green Wall Support Program</h3>
+                        <p class="card-text">
+                            Contributing to Africa's ambitious reforestation project through:
+                        </p>
+                        <ul class="project-details">
+                            <li>Drought-resistant agriculture</li>
+                            <li>Community-led land management</li>
+                            <li>Biodiversity conservation</li>
+                            <li>Climate change mitigation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section>
+            <h2 class="section-title">Our Location</h2>
+            <div class="map-container">
+                <div id="africaMap" aria-label="COWAfrica office location map"></div>
+                <div id="map-fallback" style="display: none; text-align: center; color: #333; padding: 20px; background: #f9f9f9; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <p>Unable to load the map. Please check your internet connection or try again later.</p>
+                    <button onclick="window.location.reload()">Retry</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>3</h3>
+                <p>Country Active</p>
+                <div class="badge">Ghana ,  Sierra Leone & Nigeria</div>
+            </div>
+            <div class="stat-card">
+                <h3>Coming Soon</h3>
+                <p>Local Partnerships</p>
+                <div class="badge">2+</div>
+            </div>
+            <div class="stat-card">
+                <h3>Coming Soon</h3>
+                <p>People Reached</p>
+                <div class="badge">100,000+</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="socials">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="../privacy/privacy.html">Privacy Policy</a>
+                <a href="mailto:info@cowafrica.org">Contact Us</a>
+            </div>
+        </div>
+        <p>© 2025 COWAfrica. All rights reserved.</p>
+    </footer>
+
+    
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Inline Map Initialization -->
+    <script>
+        // Ensure the DOM is fully loaded before initializing the map
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Initialize the map and center it on COWAfrica office in Akosombo, Ghana
+                var map = L.map('africaMap', {
+                    zoomControl: true,
+                    scrollWheelZoom: true,
+                    touchZoom: true
+                }).setView([6.3000, 0.0500], 15); // Centered on Akosombo with zoom level 15
+
+                // Add OpenStreetMap tiles with attribution
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 18,
+                    minZoom: 10
+                }).addTo(map).on('tileerror', function(error) {
+                    console.error('Failed to load tile:', error);
+                });
+
+                // Custom icon for COWAfrica office
+                var officeIcon = L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color: #00796b; width: 24px; height: 24px; border-radius: 50%; border: 2px solid white;"></div>',
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12]
+                });
+
+                // Office address for popup
+                var officeAddress = 'LC25D, Mem Street, Community 1, Akosombo, EA-0458, Eastern Region, Ghana<br>Mailing Address: P.O. Box Ak447, Akosombo E/R, Ghana';
+
+                // Add marker for COWAfrica office
+                L.marker([6.3000, 0.0500], { icon: officeIcon })
+                    .addTo(map)
+                    .bindPopup('<b>COWAfrica Registered Office</b><br>' + officeAddress)
+                    .openPopup();
+            } catch (error) {
+                console.error('Error initializing map:', error);
+                document.getElementById('africaMap').style.display = 'none';
+                document.getElementById('map-fallback').style.display = 'block';
+            }
+        });
+    </script>
+
+    <!-- Other Scripts -->
+    <script src="../script.js"></script>
+    <script>
+        // Back to Top Button Visibility
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('#back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

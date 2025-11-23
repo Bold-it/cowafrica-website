@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's New | COWAfrica</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <style>
+    /* Enhanced CSS for What's New Page */
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .filter-buttons button {
+      background-color: #f1f1f1;
+      color: #333;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .filter-buttons button.active {
+      background-color: #2196f3;
+      color: white;
+    }
+    .filter-buttons button:hover:not(.active) {
+      background-color: #e0e0e0;
+    }
+    .event-item {
+      display: flex;
+      margin-bottom: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .event-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+    .event-image img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px 0 0 8px;
+    }
+    .event-details {
+      padding: 15px;
+      flex-grow: 1;
+    }
+    .event-details h3 {
+      font-size: 1.25rem;
+      color: #00796b;
+      margin-bottom: 10px;
+    }
+    .event-date {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .event-details ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+    .event-details ul li {
+      margin-bottom: 5px;
+    }
+    .card-link {
+      color: #00796b;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      margin-right: 15px;
+      transition: color 0.3s ease;
+    }
+    .card-link:hover {
+      color: #005f5b;
+    }
+    .card-link i {
+      margin-left: 5px;
+    }
+    .pagination a {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: #666;
+      text-decoration: none;
+      margin: 0 2px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .pagination a.active {
+      background-color: #00796b;
+      color: white;
+      border-color: #00796b;
+    }
+    .pagination a:hover:not(.active) {
+      background-color: #e0f2e9;
+      color: #00796b;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00796b;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: none;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+    .back-to-top:hover {
+      background-color: #005f5b;
+    }
+    @media (max-width: 768px) {
+      .event-item {
+        flex-direction: column;
+      }
+      .event-image img {
+        width: 100%;
+        height: 200px;
+        border-radius: 8px 8px 0 0;
+      }
+      .filter-buttons button {
+        flex: 1 1 45%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="../images/logo7.png" alt="COWAfrica Logo" class="logo">
+      <div class="tagline">
+        <h1>Center for One Welfare - Africa</h1>
+        <p>UNITING FOR A HEALTHIER WORLD</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a href="../support/support.html" class="top-link">Donate</a>
+      <a href="../getinvolved/getinvolved.html" class="top-link join-btn">Get Involved</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="main-navbar">
+    <nav>
+      <button class="mobile-menu-btn" aria-label="Toggle Menu"><i class="fa fa-bars"></i></button>
+      <ul class="main-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="../about/about.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">About Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../about/who-we-are.html">Who We Are</a></li>
+            <li><a href="../about/our-team.html">Our Team</a></li>
+            <li><a href="../about/where-we-work.html">Where We Are</a></li>
+            <li><a href="../about/country-ambassadors.html">Country Ambassadors & Representatives</a></li>
+            <li><a href="../about/student-interns.html">Student Interns & Ambassadors</a></li>
+            <li><a href="about/partner.html">Our Partners</a></li>
+
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../whatwedo/whatwedo.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">What We Do <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../whatwedo/human-health.html">Human Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/animal-health.html">Animal Health & Welfare Advocacy</a></li>
+            <li><a href="../whatwedo/environmental-health.html">Environmental Health & Conservation Advocacy</a></li>
+          </ul>
+        </li>
+        <li><a href="../research/research.html">Research</a></li>
+        <li><a href="../training/training.html">Training</a></li>
+        <li class="dropdown">
+          <a href="../events/events.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">News <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="whats-new.html">What's New</a></li>
+            <li><a href="past-events.html">Past Events & Works</a></li>
+            <li><a href="latest-news.html">Latest News Around the World</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../getinvolved/getinvolved.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Join Us <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="../getinvolved/ambassadors.html">Country Ambassadors & Representatives</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+            <li>
+              <a href="../getinvolved/student-interns.html">Student Interns & Ambassadors</a>
+              <button class="apply-btn">Apply Here</button>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="../media/media.html" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Media/Resources <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="../media/vital-documents.html">Vital Documents</a></li>
+            <li><a href="../media/event-pictures.html">Event Pictures</a></li>
+            <li><a href="../media/videos.html">Videos</a></li>
+          </ul>
+        </li>
+        <li><a href="../support/support.html">Support Us</a></li>
+      </ul>
+      <!-- Mega Menu Container -->
+      <div class="mega-menu">
+        <button class="close-btn" aria-label="Close Menu"><i class="fa fa-times"></i></button>
+        <div class="mega-menu-content"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../events/events.html">Events</a></li>
+      <li><span aria-current="page">What's New</span></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container" style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+    <!-- Intro Section -->
+    <section class="intro">
+      <h2>What's New</h2>
+      <p>
+        Stay updated on COWAfrica’s upcoming events, including workshops, webinars, and conferences focused on advancing the One Health approach. Join us to collaborate with experts, communities, and stakeholders in addressing interconnected health challenges across Africa.
+      </p>
+    </section>
+
+    <!-- Filter Options -->
+    <div class="filter-buttons">
+      <button class="form-submit active" data-filter="all" onclick="filterEvents('all')">All Events</button>
+      <button class="form-submit" data-filter="conferences" onclick="filterEvents('conferences')">Conferences</button>
+      <button class="form-submit" data-filter="workshops" onclick="filterEvents('workshops')">Workshops</button>
+      <button class="form-submit" data-filter="webinars" onclick="filterEvents('webinars')">Webinars</button>
+      <button class="form-submit" data-filter="field-projects" onclick="filterEvents('field-projects')">Field Projects</button>
+    </div>
+    
+    <!-- Upcoming Events Section -->
+    <section id="events-section">
+      <h2 class="section-title">2025 Upcoming Events</h2>
+
+      <div class="event-item" data-category="conferences">
+        <div class="event-image">
+          <img src="../images/upcoming-conference.jpg" alt="One Health Summit 2025">
+        </div>
+        <div class="event-details">
+          <h3>One Health Summit 2025</h3>
+          <p class="event-date"><i class="fa fa-calendar"></i> August 10-12, 2025 | <i class="fa fa-map-marker"></i> Nairobi, Kenya</p>
+          <p>
+            Join us for the One Health Summit 2025, where over 400 participants from across Africa and beyond will gather to discuss innovative strategies for integrating human, animal, and environmental health.
+          </p>
+          <p>
+            <strong>Key features:</strong>
+          </p>
+          <ul>
+            <li>Keynote addresses from global One Health leaders</li>
+            <li>Workshops on zoonotic disease prevention</li>
+            <li>Networking sessions for cross-sector collaboration</li>
+            <li>Launch of the 2025 One Health Action Plan</li>
+          </ul>
+          <div style="display: flex; gap: 10px;">
+            <a href="#" class="card-link">Register Now <i class="fa fa-arrow-right"></i></a>
+            <a href="#" class="card-link">View Agenda <i class="fa fa-file-pdf"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-item" data-category="webinars">
+        <div class="event-image">
+          <img src="../images/webinar.jpg" alt="One Health Webinar">
+        </div>
+        <div class="event-details">
+          <h3>Webinar: Climate Change and Zoonotic Diseases</h3>
+          <p class="event-date"><i class="fa fa-calendar"></i> June 15, 2025 | <i class="fa fa-globe"></i> Online</p>
+          <p>
+            This webinar will explore the impact of climate change on the spread of zoonotic diseases, featuring experts in epidemiology, veterinary science, and environmental health.
+          </p>
+          <p>
+            <strong>Highlights:</strong>
+          </p>
+          <ul>
+            <li>Panel discussion with leading researchers</li>
+            <li>Case studies from Sub-Saharan Africa</li>
+            <li>Interactive Q&A session</li>
+            <li>Free resources on climate-health strategies</li>
+          </ul>
+          <a href="#" class="card-link">Sign Up Now <i class="fa fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="event-item" data-category="workshops">
+        <div class="event-image">
+          <img src="../images/workshop.jpg" alt="Community Health Workshop">
+        </div>
+        <div class="event-details">
+          <h3>Community Health & Welfare Workshop</h3>
+          <p class="event-date"><i class="fa fa-calendar"></i> July 20-22, 2025 | <i class="fa fa-map-marker"></i> Kampala, Uganda</p>
+          <p>
+            This workshop will train community leaders and health workers in One Health principles, focusing on improving health outcomes in rural communities.
+          </p>
+          <p>
+            <strong>Objectives:</strong>
+          </p>
+          <ul>
+            <li>Train 50 community health workers</li>
+            <li>Develop local health action plans</li>
+            <li>Promote integrated disease surveillance</li>
+            <li>Provide tools for sustainable health practices</li>
+          </ul>
+          <div style="display: flex; gap: 10px;">
+            <a href="#" class="card-link">Apply to Participate <i class="fa fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-item" data-category="field-projects">
+        <div class="event-image">
+          <img src="../images/field-project.jpg" alt="Wildlife Conservation Project">
+        </div>
+        <div class="event-details">
+          <h3>Wildlife Conservation & Community Engagement Project</h3>
+          <p class="event-date"><i class="fa fa-calendar"></i> September 1-15, 2025 | <i class="fa fa-map-marker"></i> Maasai Mara, Kenya</p>
+          <p>
+            This field project will engage local communities in wildlife conservation efforts, focusing on protecting habitats and reducing human-wildlife conflict.
+          </p>
+          <p>
+            <strong>Planned activities:</strong>
+          </p>
+          <ul>
+            <li>Establishment of 5 community wildlife corridors</li>
+            <li>Training for 100 local conservationists</li>
+            <li>Workshops on sustainable farming practices</li>
+            <li>Monitoring of wildlife populations</li>
+          </ul>
+          <a href="#" class="card-link">Learn More <i class="fa fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Pagination -->
+    <div style="display: flex; justify-content: center; margin-top: 40px;" class="pagination">
+      <div style="display: flex; gap: 5px;">
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#"><i class="fa fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Get Involved Section -->
+    <section style="background-color: #f9f9f9; padding: 40px; border-radius: 8px; margin-top: 40px; text-align: center;">
+      <h2>Get Involved with COWAfrica</h2>
+      <p style="max-width: 700px; margin: 20px auto;">
+        Join us in advancing the One Health approach across Africa. Your support can make a lasting impact on human health, animal welfare, and environmental sustainability. Have questions? Reach out to us!
+      </p>
+      <div class="cta-buttons">
+        <a href="../support/support.html" class="join-btn">Support Us</a>
+        <a href="../getinvolved/getinvolved.html" class="join-btn">Get Involved</a>
+        <a href="/cdn-cgi/l/email-protection#2d44434b426d4e425a4c4b5f444e4c03425f4a" class="join-btn">Contact Us</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/privacy.html">Privacy Policy</a>
+        <a href="mailto:info@cowafrica.org">Contact Us</a>
+      </div>
+    </div>
+    <p>© 2025 COWAfrica. All rights reserved.</p>
+  </footer>
+
+  <!-- Cookie Notice -->
+  <div class="cookie-notice" id="cookie-notice">
+    <p>We use cookies to enhance your experience. <a href="../privacy/privacy.html">Learn more</a></p>
+    <button id="cookie-accept">Accept</button>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="../script.js"></script>
+  <script>
+    // Filter Events Functionality
+    function filterEvents(category) {
+      const eventItems = document.querySelectorAll('.event-item');
+      const buttons = document.querySelectorAll('.filter-buttons button');
+
+      // Update button active state
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-filter') === category) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Filter events
+      eventItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        if (category === 'all' || itemCategory === category) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Back to Top Button Visibility
+    window.addEventListener('scroll', () => {
+      const backToTop = document.querySelector('#back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+  </script>
+  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'938623829f43457e',t:'MTc0NjAwNjY2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
